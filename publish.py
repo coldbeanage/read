@@ -213,7 +213,7 @@ PAGE = """<!DOCTYPE html>
 
 <div class="shell">
   <header class="doc-head">
-    {kicker}
+    <!--SERIESKICKER--><!--/SERIESKICKER-->{kicker}
     <h1 class="title">{title_esc}</h1>
     {subtitle}
     <p class="meta"><span>{date_h}</span><span class="dot">&middot;</span><span>{minutes} min read</span><span class="dot">&middot;</span><span>{words:,} words</span></p>
@@ -223,6 +223,7 @@ PAGE = """<!DOCTYPE html>
   <main class="prose" id="prose">
 {body}
   </main>
+  <!--SERIESNAV--><!--/SERIESNAV-->
   <footer class="doc-foot">
     <span>{date_h}</span>
     <span><a href="{base}">&larr; all documents</a></span>
@@ -361,23 +362,110 @@ INDEX = """<!DOCTYPE html>
 """
 
 
-def build_index(entries: list[dict]) -> str:
-    entries = sorted(entries, key=lambda e: e.get("published", ""), reverse=True)
-    if not entries:
-        body = '<p class="empty">Nothing published yet.</p>'
-    else:
-        items = []
-        for e in entries:
-            desc = f'<span class="d">{html.escape(e["description"])}</span>' if e.get("description") else ""
-            items.append(
-                f'<li><a href="{e["slug"]}/">'
-                f'<span class="t">{html.escape(e["title"])}</span>{desc}'
-                f'<span class="m"><span>{e["date_h"]}</span><span>&middot;</span>'
-                f'<span>{e["minutes"]} min</span></span></a></li>'
+def refresh_series(entries: list[dict]) -> int:
+    """Rewrite the series kicker + prev/next block in every page of every series."""
+    groups: dict[str, list[dict]] = {}
+    for e in entries:
+        if e.get("series"):
+            groups.setdefault(e["series"], []).append(e)
+
+    touched = 0
+    for name, members in groups.items():
+        members.sort(key=lambda e: (e.get("part") is None, e.get("part") or 0, e.get("published", "")))
+        total = len(members)
+        for i, e in enumerate(members):
+            page = DOCS / e["slug"] / "index.html"
+            if not page.exists():
+                continue
+            n = e.get("part") or (i + 1)
+            kicker = (
+                f'<p class="kicker">{html.escape(name)}'
+                f'<span class="part"> \u00b7 Part {n} of {total}</span></p>'
             )
-        body = f'<ul class="doclist">{"".join(items)}</ul>'
+
+            prev_e = members[i - 1] if i > 0 else None
+            next_e = members[i + 1] if i < total - 1 else None
+            cards = []
+            if prev_e:
+                cards.append(
+                    f'<a class="sn prev" href="../{prev_e["slug"]}/">'
+                    f'<span class="dir">Previous</span>'
+                    f'<span class="t">{html.escape(prev_e["title"])}</span></a>'
+                )
+            if next_e:
+                cards.append(
+                    f'<a class="sn next" href="../{next_e["slug"]}/">'
+                    f'<span class="dir">Next</span>'
+                    f'<span class="t">{html.escape(next_e["title"])}</span></a>'
+                )
+            others = "".join(
+                f'<li{" class=\"here\"" if m["slug"] == e["slug"] else ""}>'
+                f'<a href="../{m["slug"]}/"><span class="n">{m.get("part") or j + 1}</span>'
+                f'{html.escape(m["title"])}</a></li>'
+                for j, m in enumerate(members)
+            )
+            nav = (
+                '<nav class="series-nav" aria-label="Series navigation">'
+                f'<div class="sn-row">{"".join(cards)}</div>'
+                f'<div class="sn-all"><div class="sn-label">{html.escape(name)}</div>'
+                f'<ol>{others}</ol></div></nav>'
+            )
+
+            txt = page.read_text(encoding="utf-8")
+            txt = re.sub(r"<!--SERIESKICKER-->.*?<!--/SERIESKICKER-->",
+                         f"<!--SERIESKICKER-->{kicker}<!--/SERIESKICKER-->", txt, flags=re.S)
+            txt = re.sub(r"<!--SERIESNAV-->.*?<!--/SERIESNAV-->",
+                         f"<!--SERIESNAV-->{nav}<!--/SERIESNAV-->", txt, flags=re.S)
+            page.write_text(txt, encoding="utf-8")
+            touched += 1
+    return touched
+
+
+def _index_item(e: dict) -> str:
+    desc = f'<span class="d">{html.escape(e["description"])}</span>' if e.get("description") else ""
+    return (
+        f'<li><a href="{e["slug"]}/">'
+        f'<span class="t">{html.escape(e["title"])}</span>{desc}'
+        f'<span class="m"><span>{e["date_h"]}</span><span>&middot;</span>'
+        f'<span>{e["minutes"]} min</span></span></a></li>'
+    )
+
+
+def build_index(entries: list[dict]) -> str:
+    if not entries:
+        return INDEX.format(count=0, plural="s", list_html='<p class="empty">Nothing published yet.</p>')
+
+    # group series into one block, ordered by the newest member
+    series: dict[str, list[dict]] = {}
+    singles: list[dict] = []
+    for e in entries:
+        (series.setdefault(e["series"], []) if e.get("series") else singles).append(e)
+
+    blocks: list[tuple[str, str]] = []
+    for name, members in series.items():
+        members.sort(key=lambda m: (m.get("part") is None, m.get("part") or 0, m.get("published", "")))
+        newest = max(m.get("published", "") for m in members)
+        mins = sum(m.get("minutes", 0) for m in members)
+        inner = "".join(
+            f'<li><a href="{m["slug"]}/">'
+            f'<span class="n">{m.get("part") if m.get("part") is not None else i + 1}</span>'
+            f'<span class="body"><span class="t">{html.escape(m["title"])}</span>'
+            + (f'<span class="d">{html.escape(m["description"])}</span>' if m.get("description") else "")
+            + f'<span class="m">{m["minutes"]} min</span></span></a></li>'
+            for i, m in enumerate(members)
+        )
+        blocks.append((newest,
+            f'<section class="series-block"><h2 class="series-title">{html.escape(name)}'
+            f'<span class="series-meta">{len(members)} parts &middot; {mins} min</span></h2>'
+            f'<ol class="series-list">{inner}</ol></section>'))
+
+    for e in singles:
+        blocks.append((e.get("published", ""), f'<ul class="doclist">{_index_item(e)}</ul>'))
+
+    blocks.sort(key=lambda b: b[0], reverse=True)
     n = len(entries)
-    return INDEX.format(count=n, plural="" if n == 1 else "s", list_html=body)
+    return INDEX.format(count=n, plural="" if n == 1 else "s",
+                        list_html="".join(b[1] for b in blocks))
 
 
 # ----------------------------------------------------------------- main
@@ -390,6 +478,8 @@ def main() -> None:
     ap.add_argument("--raw", action="store_true", help="force: publish HTML untouched")
     ap.add_argument("--theme", action="store_true", help="force: re-wrap HTML in the read theme")
     ap.add_argument("--no-push", action="store_true", help="build locally, skip git")
+    ap.add_argument("--series", help="group with other docs under this series name")
+    ap.add_argument("--part", type=int, help="position within the series")
     args = ap.parse_args()
 
     src_path = Path(args.file).expanduser().resolve()
@@ -451,6 +541,10 @@ def main() -> None:
         body_html, toc_tokens = render_markdown(text)
         toc_items = flatten_toc(toc_tokens)
 
+    if not passthrough:
+        body_html = re.sub(r"<table>", '<div class="table-wrap"><table>', body_html)
+        body_html = re.sub(r"</table>", "</table></div>", body_html)
+
     plain = strip_tags(body_html)
     if is_html and passthrough:
         plain = plain_for_stats or plain
@@ -509,14 +603,20 @@ def main() -> None:
         except json.JSONDecodeError:
             entries = []
     entries = [e for e in entries if e.get("slug") != slug]
+    series = args.series or meta.get("series") or ""
+    part = args.part if args.part is not None else (
+        int(meta["part"]) if str(meta.get("part", "")).isdigit() else None
+    )
     entries.append({
         "slug": slug, "title": title, "description": desc,
         "published": date_iso, "date_h": date_h,
         "words": words, "minutes": minutes,
+        "series": series, "part": part,
         "updated": now.strftime("%Y-%m-%dT%H:%M:%S%z"),
     })
     entries = [e for e in entries if (DOCS / e["slug"] / "index.html").exists()]
     MANIFEST.write_text(json.dumps(entries, indent=2) + "\n", encoding="utf-8")
+    series_touched = refresh_series(entries)
     (DOCS / "index.html").write_text(build_index(entries), encoding="utf-8")
     (DOCS / ".nojekyll").touch()
 
@@ -550,6 +650,7 @@ def main() -> None:
     print(json.dumps({
         "slug": slug, "title": title, "words": words, "minutes": minutes,
         "headings": len(toc_items), "assets_copied": copied,
+        "series": series or None, "series_pages_updated": series_touched,
         "local": str(out_dir / "index.html"),
         "url": url, "index_url": url.rsplit(slug + "/", 1)[0] if url else "",
         "pushed": not args.no_push,
