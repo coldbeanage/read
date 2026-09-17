@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Typography and Rendering Test</title>
+<meta name="description" content="This opening paragraph exists to check the measure, the leading, and how a serif body face sits against the background.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Typography and Rendering Test">
+<meta property="og:description" content="This opening paragraph exists to check the measure, the leading, and how a serif body face sits against the background.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/literata-latin-400-normal.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/inter-latin-600-normal.woff2">
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/theme.css">
+<style>
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #ffffff; }
+.codehilite .c { color: #177500 } /* Comment */
+.codehilite .err { color: #000 } /* Error */
+.codehilite .k { color: #A90D91 } /* Keyword */
+.codehilite .l { color: #1C01CE } /* Literal */
+.codehilite .n { color: #000 } /* Name */
+.codehilite .o { color: #000 } /* Operator */
+.codehilite .ch { color: #177500 } /* Comment.Hashbang */
+.codehilite .cm { color: #177500 } /* Comment.Multiline */
+.codehilite .cp { color: #633820 } /* Comment.Preproc */
+.codehilite .cpf { color: #177500 } /* Comment.PreprocFile */
+.codehilite .c1 { color: #177500 } /* Comment.Single */
+.codehilite .cs { color: #177500 } /* Comment.Special */
+.codehilite .kc { color: #A90D91 } /* Keyword.Constant */
+.codehilite .kd { color: #A90D91 } /* Keyword.Declaration */
+.codehilite .kn { color: #A90D91 } /* Keyword.Namespace */
+.codehilite .kp { color: #A90D91 } /* Keyword.Pseudo */
+.codehilite .kr { color: #A90D91 } /* Keyword.Reserved */
+.codehilite .kt { color: #A90D91 } /* Keyword.Type */
+.codehilite .ld { color: #1C01CE } /* Literal.Date */
+.codehilite .m { color: #1C01CE } /* Literal.Number */
+.codehilite .s { color: #C41A16 } /* Literal.String */
+.codehilite .na { color: #836C28 } /* Name.Attribute */
+.codehilite .nb { color: #A90D91 } /* Name.Builtin */
+.codehilite .nc { color: #3F6E75 } /* Name.Class */
+.codehilite .no { color: #000 } /* Name.Constant */
+.codehilite .nd { color: #000 } /* Name.Decorator */
+.codehilite .ni { color: #000 } /* Name.Entity */
+.codehilite .ne { color: #000 } /* Name.Exception */
+.codehilite .nf { color: #000 } /* Name.Function */
+.codehilite .nl { color: #000 } /* Name.Label */
+.codehilite .nn { color: #000 } /* Name.Namespace */
+.codehilite .nx { color: #000 } /* Name.Other */
+.codehilite .py { color: #000 } /* Name.Property */
+.codehilite .nt { color: #000 } /* Name.Tag */
+.codehilite .nv { color: #000 } /* Name.Variable */
+.codehilite .ow { color: #000 } /* Operator.Word */
+.codehilite .mb { color: #1C01CE } /* Literal.Number.Bin */
+.codehilite .mf { color: #1C01CE } /* Literal.Number.Float */
+.codehilite .mh { color: #1C01CE } /* Literal.Number.Hex */
+.codehilite .mi { color: #1C01CE } /* Literal.Number.Integer */
+.codehilite .mo { color: #1C01CE } /* Literal.Number.Oct */
+.codehilite .sa { color: #C41A16 } /* Literal.String.Affix */
+.codehilite .sb { color: #C41A16 } /* Literal.String.Backtick */
+.codehilite .sc { color: #2300CE } /* Literal.String.Char */
+.codehilite .dl { color: #C41A16 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #C41A16 } /* Literal.String.Doc */
+.codehilite .s2 { color: #C41A16 } /* Literal.String.Double */
+.codehilite .se { color: #C41A16 } /* Literal.String.Escape */
+.codehilite .sh { color: #C41A16 } /* Literal.String.Heredoc */
+.codehilite .si { color: #C41A16 } /* Literal.String.Interpol */
+.codehilite .sx { color: #C41A16 } /* Literal.String.Other */
+.codehilite .sr { color: #C41A16 } /* Literal.String.Regex */
+.codehilite .s1 { color: #C41A16 } /* Literal.String.Single */
+.codehilite .ss { color: #C41A16 } /* Literal.String.Symbol */
+.codehilite .bp { color: #5B269A } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #000 } /* Name.Function.Magic */
+.codehilite .vc { color: #000 } /* Name.Variable.Class */
+.codehilite .vg { color: #000 } /* Name.Variable.Global */
+.codehilite .vi { color: #000 } /* Name.Variable.Instance */
+.codehilite .vm { color: #000 } /* Name.Variable.Magic */
+.codehilite .il { color: #1C01CE } /* Literal.Number.Integer.Long */
+pre { line-height: 125%; }
+td.linenos .normal { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+html[data-theme="dark"] .codehilite .hll { background-color: #6e7681 }
+html[data-theme="dark"] .codehilite { background: #0d1117; color: #E6EDF3 }
+html[data-theme="dark"] .codehilite .c { color: #8B949E; font-style: italic } /* Comment */
+html[data-theme="dark"] .codehilite .err { color: #F85149 } /* Error */
+html[data-theme="dark"] .codehilite .esc { color: #E6EDF3 } /* Escape */
+html[data-theme="dark"] .codehilite .g { color: #E6EDF3 } /* Generic */
+html[data-theme="dark"] .codehilite .k { color: #FF7B72 } /* Keyword */
+html[data-theme="dark"] .codehilite .l { color: #A5D6FF } /* Literal */
+html[data-theme="dark"] .codehilite .n { color: #E6EDF3 } /* Name */
+html[data-theme="dark"] .codehilite .o { color: #FF7B72; font-weight: bold } /* Operator */
+html[data-theme="dark"] .codehilite .x { color: #E6EDF3 } /* Other */
+html[data-theme="dark"] .codehilite .p { color: #E6EDF3 } /* Punctuation */
+html[data-theme="dark"] .codehilite .ch { color: #8B949E; font-style: italic } /* Comment.Hashbang */
+html[data-theme="dark"] .codehilite .cm { color: #8B949E; font-style: italic } /* Comment.Multiline */
+html[data-theme="dark"] .codehilite .cp { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Preproc */
+html[data-theme="dark"] .codehilite .cpf { color: #8B949E; font-style: italic } /* Comment.PreprocFile */
+html[data-theme="dark"] .codehilite .c1 { color: #8B949E; font-style: italic } /* Comment.Single */
+html[data-theme="dark"] .codehilite .cs { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Special */
+html[data-theme="dark"] .codehilite .gd { color: #FFA198; background-color: #490202 } /* Generic.Deleted */
+html[data-theme="dark"] .codehilite .ge { color: #E6EDF3; font-style: italic } /* Generic.Emph */
+html[data-theme="dark"] .codehilite .ges { color: #E6EDF3; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+html[data-theme="dark"] .codehilite .gr { color: #FFA198 } /* Generic.Error */
+html[data-theme="dark"] .codehilite .gh { color: #79C0FF; font-weight: bold } /* Generic.Heading */
+html[data-theme="dark"] .codehilite .gi { color: #56D364; background-color: #0F5323 } /* Generic.Inserted */
+html[data-theme="dark"] .codehilite .go { color: #8B949E } /* Generic.Output */
+html[data-theme="dark"] .codehilite .gp { color: #8B949E } /* Generic.Prompt */
+html[data-theme="dark"] .codehilite .gs { color: #E6EDF3; font-weight: bold } /* Generic.Strong */
+html[data-theme="dark"] .codehilite .gu { color: #79C0FF } /* Generic.Subheading */
+html[data-theme="dark"] .codehilite .gt { color: #FF7B72 } /* Generic.Traceback */
+html[data-theme="dark"] .codehilite .g-Underline { color: #E6EDF3; text-decoration: underline } /* Generic.Underline */
+html[data-theme="dark"] .codehilite .kc { color: #79C0FF } /* Keyword.Constant */
+html[data-theme="dark"] .codehilite .kd { color: #FF7B72 } /* Keyword.Declaration */
+html[data-theme="dark"] .codehilite .kn { color: #FF7B72 } /* Keyword.Namespace */
+html[data-theme="dark"] .codehilite .kp { color: #79C0FF } /* Keyword.Pseudo */
+html[data-theme="dark"] .codehilite .kr { color: #FF7B72 } /* Keyword.Reserved */
+html[data-theme="dark"] .codehilite .kt { color: #FF7B72 } /* Keyword.Type */
+html[data-theme="dark"] .codehilite .ld { color: #79C0FF } /* Literal.Date */
+html[data-theme="dark"] .codehilite .m { color: #A5D6FF } /* Literal.Number */
+html[data-theme="dark"] .codehilite .s { color: #A5D6FF } /* Literal.String */
+html[data-theme="dark"] .codehilite .na { color: #E6EDF3 } /* Name.Attribute */
+html[data-theme="dark"] .codehilite .nb { color: #E6EDF3 } /* Name.Builtin */
+html[data-theme="dark"] .codehilite .nc { color: #F0883E; font-weight: bold } /* Name.Class */
+html[data-theme="dark"] .codehilite .no { color: #79C0FF; font-weight: bold } /* Name.Constant */
+html[data-theme="dark"] .codehilite .nd { color: #D2A8FF; font-weight: bold } /* Name.Decorator */
+html[data-theme="dark"] .codehilite .ni { color: #FFA657 } /* Name.Entity */
+html[data-theme="dark"] .codehilite .ne { color: #F0883E; font-weight: bold } /* Name.Exception */
+html[data-theme="dark"] .codehilite .nf { color: #D2A8FF; font-weight: bold } /* Name.Function */
+html[data-theme="dark"] .codehilite .nl { color: #79C0FF; font-weight: bold } /* Name.Label */
+html[data-theme="dark"] .codehilite .nn { color: #FF7B72 } /* Name.Namespace */
+html[data-theme="dark"] .codehilite .nx { color: #E6EDF3 } /* Name.Other */
+html[data-theme="dark"] .codehilite .py { color: #79C0FF } /* Name.Property */
+html[data-theme="dark"] .codehilite .nt { color: #7EE787 } /* Name.Tag */
+html[data-theme="dark"] .codehilite .nv { color: #79C0FF } /* Name.Variable */
+html[data-theme="dark"] .codehilite .ow { color: #FF7B72; font-weight: bold } /* Operator.Word */
+html[data-theme="dark"] .codehilite .pm { color: #E6EDF3 } /* Punctuation.Marker */
+html[data-theme="dark"] .codehilite .w { color: #6E7681 } /* Text.Whitespace */
+html[data-theme="dark"] .codehilite .mb { color: #A5D6FF } /* Literal.Number.Bin */
+html[data-theme="dark"] .codehilite .mf { color: #A5D6FF } /* Literal.Number.Float */
+html[data-theme="dark"] .codehilite .mh { color: #A5D6FF } /* Literal.Number.Hex */
+html[data-theme="dark"] .codehilite .mi { color: #A5D6FF } /* Literal.Number.Integer */
+html[data-theme="dark"] .codehilite .mo { color: #A5D6FF } /* Literal.Number.Oct */
+html[data-theme="dark"] .codehilite .sa { color: #79C0FF } /* Literal.String.Affix */
+html[data-theme="dark"] .codehilite .sb { color: #A5D6FF } /* Literal.String.Backtick */
+html[data-theme="dark"] .codehilite .sc { color: #A5D6FF } /* Literal.String.Char */
+html[data-theme="dark"] .codehilite .dl { color: #79C0FF } /* Literal.String.Delimiter */
+html[data-theme="dark"] .codehilite .sd { color: #A5D6FF } /* Literal.String.Doc */
+html[data-theme="dark"] .codehilite .s2 { color: #A5D6FF } /* Literal.String.Double */
+html[data-theme="dark"] .codehilite .se { color: #79C0FF } /* Literal.String.Escape */
+html[data-theme="dark"] .codehilite .sh { color: #79C0FF } /* Literal.String.Heredoc */
+html[data-theme="dark"] .codehilite .si { color: #A5D6FF } /* Literal.String.Interpol */
+html[data-theme="dark"] .codehilite .sx { color: #A5D6FF } /* Literal.String.Other */
+html[data-theme="dark"] .codehilite .sr { color: #79C0FF } /* Literal.String.Regex */
+html[data-theme="dark"] .codehilite .s1 { color: #A5D6FF } /* Literal.String.Single */
+html[data-theme="dark"] .codehilite .ss { color: #A5D6FF } /* Literal.String.Symbol */
+html[data-theme="dark"] .codehilite .bp { color: #E6EDF3 } /* Name.Builtin.Pseudo */
+html[data-theme="dark"] .codehilite .fm { color: #D2A8FF; font-weight: bold } /* Name.Function.Magic */
+html[data-theme="dark"] .codehilite .vc { color: #79C0FF } /* Name.Variable.Class */
+html[data-theme="dark"] .codehilite .vg { color: #79C0FF } /* Name.Variable.Global */
+html[data-theme="dark"] .codehilite .vi { color: #79C0FF } /* Name.Variable.Instance */
+html[data-theme="dark"] .codehilite .vm { color: #79C0FF } /* Name.Variable.Magic */
+html[data-theme="dark"] .codehilite .il { color: #A5D6FF } /* Literal.Number.Integer.Long */
+@media (prefers-color-scheme: dark) {
+pre { line-height: 125%; }
+td.linenos .normal { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+html:not([data-theme="light"]) .codehilite .hll { background-color: #6e7681 }
+html:not([data-theme="light"]) .codehilite { background: #0d1117; color: #E6EDF3 }
+html:not([data-theme="light"]) .codehilite .c { color: #8B949E; font-style: italic } /* Comment */
+html:not([data-theme="light"]) .codehilite .err { color: #F85149 } /* Error */
+html:not([data-theme="light"]) .codehilite .esc { color: #E6EDF3 } /* Escape */
+html:not([data-theme="light"]) .codehilite .g { color: #E6EDF3 } /* Generic */
+html:not([data-theme="light"]) .codehilite .k { color: #FF7B72 } /* Keyword */
+html:not([data-theme="light"]) .codehilite .l { color: #A5D6FF } /* Literal */
+html:not([data-theme="light"]) .codehilite .n { color: #E6EDF3 } /* Name */
+html:not([data-theme="light"]) .codehilite .o { color: #FF7B72; font-weight: bold } /* Operator */
+html:not([data-theme="light"]) .codehilite .x { color: #E6EDF3 } /* Other */
+html:not([data-theme="light"]) .codehilite .p { color: #E6EDF3 } /* Punctuation */
+html:not([data-theme="light"]) .codehilite .ch { color: #8B949E; font-style: italic } /* Comment.Hashbang */
+html:not([data-theme="light"]) .codehilite .cm { color: #8B949E; font-style: italic } /* Comment.Multiline */
+html:not([data-theme="light"]) .codehilite .cp { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Preproc */
+html:not([data-theme="light"]) .codehilite .cpf { color: #8B949E; font-style: italic } /* Comment.PreprocFile */
+html:not([data-theme="light"]) .codehilite .c1 { color: #8B949E; font-style: italic } /* Comment.Single */
+html:not([data-theme="light"]) .codehilite .cs { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Special */
+html:not([data-theme="light"]) .codehilite .gd { color: #FFA198; background-color: #490202 } /* Generic.Deleted */
+html:not([data-theme="light"]) .codehilite .ge { color: #E6EDF3; font-style: italic } /* Generic.Emph */
+html:not([data-theme="light"]) .codehilite .ges { color: #E6EDF3; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+html:not([data-theme="light"]) .codehilite .gr { color: #FFA198 } /* Generic.Error */
+html:not([data-theme="light"]) .codehilite .gh { color: #79C0FF; font-weight: bold } /* Generic.Heading */
+html:not([data-theme="light"]) .codehilite .gi { color: #56D364; background-color: #0F5323 } /* Generic.Inserted */
+html:not([data-theme="light"]) .codehilite .go { color: #8B949E } /* Generic.Output */
+html:not([data-theme="light"]) .codehilite .gp { color: #8B949E } /* Generic.Prompt */
+html:not([data-theme="light"]) .codehilite .gs { color: #E6EDF3; font-weight: bold } /* Generic.Strong */
+html:not([data-theme="light"]) .codehilite .gu { color: #79C0FF } /* Generic.Subheading */
+html:not([data-theme="light"]) .codehilite .gt { color: #FF7B72 } /* Generic.Traceback */
+html:not([data-theme="light"]) .codehilite .g-Underline { color: #E6EDF3; text-decoration: underline } /* Generic.Underline */
+html:not([data-theme="light"]) .codehilite .kc { color: #79C0FF } /* Keyword.Constant */
+html:not([data-theme="light"]) .codehilite .kd { color: #FF7B72 } /* Keyword.Declaration */
+html:not([data-theme="light"]) .codehilite .kn { color: #FF7B72 } /* Keyword.Namespace */
+html:not([data-theme="light"]) .codehilite .kp { color: #79C0FF } /* Keyword.Pseudo */
+html:not([data-theme="light"]) .codehilite .kr { color: #FF7B72 } /* Keyword.Reserved */
+html:not([data-theme="light"]) .codehilite .kt { color: #FF7B72 } /* Keyword.Type */
+html:not([data-theme="light"]) .codehilite .ld { color: #79C0FF } /* Literal.Date */
+html:not([data-theme="light"]) .codehilite .m { color: #A5D6FF } /* Literal.Number */
+html:not([data-theme="light"]) .codehilite .s { color: #A5D6FF } /* Literal.String */
+html:not([data-theme="light"]) .codehilite .na { color: #E6EDF3 } /* Name.Attribute */
+html:not([data-theme="light"]) .codehilite .nb { color: #E6EDF3 } /* Name.Builtin */
+html:not([data-theme="light"]) .codehilite .nc { color: #F0883E; font-weight: bold } /* Name.Class */
+html:not([data-theme="light"]) .codehilite .no { color: #79C0FF; font-weight: bold } /* Name.Constant */
+html:not([data-theme="light"]) .codehilite .nd { color: #D2A8FF; font-weight: bold } /* Name.Decorator */
+html:not([data-theme="light"]) .codehilite .ni { color: #FFA657 } /* Name.Entity */
+html:not([data-theme="light"]) .codehilite .ne { color: #F0883E; font-weight: bold } /* Name.Exception */
+html:not([data-theme="light"]) .codehilite .nf { color: #D2A8FF; font-weight: bold } /* Name.Function */
+html:not([data-theme="light"]) .codehilite .nl { color: #79C0FF; font-weight: bold } /* Name.Label */
+html:not([data-theme="light"]) .codehilite .nn { color: #FF7B72 } /* Name.Namespace */
+html:not([data-theme="light"]) .codehilite .nx { color: #E6EDF3 } /* Name.Other */
+html:not([data-theme="light"]) .codehilite .py { color: #79C0FF } /* Name.Property */
+html:not([data-theme="light"]) .codehilite .nt { color: #7EE787 } /* Name.Tag */
+html:not([data-theme="light"]) .codehilite .nv { color: #79C0FF } /* Name.Variable */
+html:not([data-theme="light"]) .codehilite .ow { color: #FF7B72; font-weight: bold } /* Operator.Word */
+html:not([data-theme="light"]) .codehilite .pm { color: #E6EDF3 } /* Punctuation.Marker */
+html:not([data-theme="light"]) .codehilite .w { color: #6E7681 } /* Text.Whitespace */
+html:not([data-theme="light"]) .codehilite .mb { color: #A5D6FF } /* Literal.Number.Bin */
+html:not([data-theme="light"]) .codehilite .mf { color: #A5D6FF } /* Literal.Number.Float */
+html:not([data-theme="light"]) .codehilite .mh { color: #A5D6FF } /* Literal.Number.Hex */
+html:not([data-theme="light"]) .codehilite .mi { color: #A5D6FF } /* Literal.Number.Integer */
+html:not([data-theme="light"]) .codehilite .mo { color: #A5D6FF } /* Literal.Number.Oct */
+html:not([data-theme="light"]) .codehilite .sa { color: #79C0FF } /* Literal.String.Affix */
+html:not([data-theme="light"]) .codehilite .sb { color: #A5D6FF } /* Literal.String.Backtick */
+html:not([data-theme="light"]) .codehilite .sc { color: #A5D6FF } /* Literal.String.Char */
+html:not([data-theme="light"]) .codehilite .dl { color: #79C0FF } /* Literal.String.Delimiter */
+html:not([data-theme="light"]) .codehilite .sd { color: #A5D6FF } /* Literal.String.Doc */
+html:not([data-theme="light"]) .codehilite .s2 { color: #A5D6FF } /* Literal.String.Double */
+html:not([data-theme="light"]) .codehilite .se { color: #79C0FF } /* Literal.String.Escape */
+html:not([data-theme="light"]) .codehilite .sh { color: #79C0FF } /* Literal.String.Heredoc */
+html:not([data-theme="light"]) .codehilite .si { color: #A5D6FF } /* Literal.String.Interpol */
+html:not([data-theme="light"]) .codehilite .sx { color: #A5D6FF } /* Literal.String.Other */
+html:not([data-theme="light"]) .codehilite .sr { color: #79C0FF } /* Literal.String.Regex */
+html:not([data-theme="light"]) .codehilite .s1 { color: #A5D6FF } /* Literal.String.Single */
+html:not([data-theme="light"]) .codehilite .ss { color: #A5D6FF } /* Literal.String.Symbol */
+html:not([data-theme="light"]) .codehilite .bp { color: #E6EDF3 } /* Name.Builtin.Pseudo */
+html:not([data-theme="light"]) .codehilite .fm { color: #D2A8FF; font-weight: bold } /* Name.Function.Magic */
+html:not([data-theme="light"]) .codehilite .vc { color: #79C0FF } /* Name.Variable.Class */
+html:not([data-theme="light"]) .codehilite .vg { color: #79C0FF } /* Name.Variable.Global */
+html:not([data-theme="light"]) .codehilite .vi { color: #79C0FF } /* Name.Variable.Instance */
+html:not([data-theme="light"]) .codehilite .vm { color: #79C0FF } /* Name.Variable.Magic */
+html:not([data-theme="light"]) .codehilite .il { color: #A5D6FF } /* Literal.Number.Integer.Long */
+}
+
+</style>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("read-theme");
+      if (t) document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<div id="progress" role="presentation"></div>
+
+<div class="topbar" id="topbar">
+  <a class="home" href="../">read</a>
+  <span class="crumb">Typography and Rendering Test</span>
+  <button class="iconbtn" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+</div>
+
+<div class="shell">
+  <header class="doc-head">
+    <p class="kicker">Pipeline test</p>
+    <h1 class="title">Typography and Rendering Test</h1>
+    <p class="subtitle">A torture test for the renderer, covering every construct a document might reasonably contain.</p>
+    <p class="meta"><span>17 September 2026</span><span class="dot">&middot;</span><span>3 min read</span><span class="dot">&middot;</span><span>658 words</span></p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ul><li class="lvl-2"><a href="#headings-and-hierarchy">Headings and hierarchy</a></li><li class="lvl-3"><a href="#third-level">Third level</a></li><li class="lvl-4"><a href="#fourth-level">Fourth level</a></li><li class="lvl-2"><a href="#lists">Lists</a></li><li class="lvl-2"><a href="#quotations">Quotations</a></li><li class="lvl-2"><a href="#code">Code</a></li><li class="lvl-2"><a href="#tables">Tables</a></li><li class="lvl-2"><a href="#admonitions">Admonitions</a></li><li class="lvl-2"><a href="#footnotes">Footnotes</a></li><li class="lvl-2"><a href="#a-long-passage">A long passage</a></li></ul></details>
+  <nav class="toc" aria-label="Table of contents"><div class="toc-label">Contents</div><ul><li class="lvl-2"><a href="#headings-and-hierarchy">Headings and hierarchy</a></li><li class="lvl-3"><a href="#third-level">Third level</a></li><li class="lvl-4"><a href="#fourth-level">Fourth level</a></li><li class="lvl-2"><a href="#lists">Lists</a></li><li class="lvl-2"><a href="#quotations">Quotations</a></li><li class="lvl-2"><a href="#code">Code</a></li><li class="lvl-2"><a href="#tables">Tables</a></li><li class="lvl-2"><a href="#admonitions">Admonitions</a></li><li class="lvl-2"><a href="#footnotes">Footnotes</a></li><li class="lvl-2"><a href="#a-long-passage">A long passage</a></li></ul></nav>
+  <main class="prose" id="prose">
+<p>This opening paragraph exists to check the measure, the leading, and how a serif body face sits against the background. It should feel like something you&rsquo;d actually want to read on a phone at night &ndash; not a GitHub README. The line length is capped near sixty-eight characters, which is the range where the eye tracks reliably from one line to the next without losing its place.</p>
+<p>Inline formatting: <strong>bold text</strong>, <em>italic text</em>, <strong><em>both at once</em></strong>, <code>inline_code()</code>, <del>struck through</del>, a <a href="https://example.com">link to somewhere</a>, and an em dash &ndash; rendered by smartypants from a double hyphen.</p>
+<h2 id="headings-and-hierarchy">Headings and hierarchy<a class="headerlink" href="#headings-and-hierarchy" title="Link to this section">&para;</a></h2>
+<p>Second-level headings get a hairline rule above them to break the page into sections. Hover one on desktop and an anchor link fades in on the left.</p>
+<h3 id="third-level">Third level<a class="headerlink" href="#third-level" title="Link to this section">&para;</a></h3>
+<p>Third-level headings are smaller and carry no rule, so a section can have internal structure without feeling chopped up.</p>
+<h4 id="fourth-level">Fourth level<a class="headerlink" href="#fourth-level" title="Link to this section">&para;</a></h4>
+<p>And a fourth level, for when things get genuinely nested.</p>
+<h2 id="lists">Lists<a class="headerlink" href="#lists" title="Link to this section">&para;</a></h2>
+<p>An unordered list:</p>
+<ul>
+<li>First item, kept short.</li>
+<li>Second item, which runs considerably longer to verify that wrapped list items align correctly against the marker rather than sliding back under it.</li>
+<li>Third item with nesting:</li>
+<li>A nested child</li>
+<li>Another nested child<ul>
+<li>And one level deeper</li>
+</ul>
+</li>
+</ul>
+<p>An ordered list:</p>
+<ol>
+<li>Fetch the source document</li>
+<li>Render it to semantic HTML</li>
+<li>Wrap it in the theme</li>
+<li>Commit and push</li>
+</ol>
+<p>A task list:</p>
+<ul>
+<li>[x] Write the stylesheet</li>
+<li>[x] Write the publisher</li>
+<li>[ ] Ship it</li>
+</ul>
+<p>A definition list:</p>
+<dl>
+<dt>Measure</dt>
+<dd>The length of a line of text, ideally 45 to 75 characters.</dd>
+<dt>Leading</dt>
+<dd>The vertical space between baselines.</dd>
+</dl>
+<h2 id="quotations">Quotations<a class="headerlink" href="#quotations" title="Link to this section">&para;</a></h2>
+<blockquote>
+<p>Typography is the craft of endowing human language with a durable visual form.</p>
+<p>The reader should be able to forget the type entirely and simply read.</p>
+</blockquote>
+<h2 id="code">Code<a class="headerlink" href="#code" title="Link to this section">&para;</a></h2>
+<p>Inline <code>const x = 42</code> sits within a sentence. Fenced blocks get syntax highlighting, a copy button on hover, and a horizontal scrollbar rather than wrapping:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">publish</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">slug</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Render a document and return its live URL."""</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
+    <span class="n">meta</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="n">split_frontmatter</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">html_body</span><span class="p">,</span> <span class="n">toc</span> <span class="o">=</span> <span class="n">render_markdown</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">deploy</span><span class="p">(</span><span class="n">html_body</span><span class="p">,</span> <span class="n">slug</span> <span class="ow">or</span> <span class="n">slugify</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">stem</span><span class="p">),</span> <span class="n">toc</span><span class="o">=</span><span class="n">toc</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">observer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">IntersectionObserver</span><span class="p">((</span><span class="nx">entries</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">entries</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">isIntersecting</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">highlight</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">id</span><span class="p">));</span>
+<span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">rootMargin</span><span class="o">:</span><span class="w"> </span><span class="s2">"-80px 0px -70% 0px"</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>./publish.py<span class="w"> </span>~/notes/quarterly-review.md
+<span class="c1"># =&gt; https://coldbeanage.github.io/read/quarterly-review/</span>
+</code></pre></div>
+
+<h2 id="tables">Tables<a class="headerlink" href="#tables" title="Link to this section">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Purpose</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub Pages</td>
+<td>Static hosting</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><code>publish.py</code></td>
+<td>Render + deploy</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>Pygments</td>
+<td>Syntax highlighting</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>Custom domain</td>
+<td>Optional vanity URL</td>
+<td>~$12/yr</td>
+</tr>
+</tbody>
+</table>
+<h2 id="admonitions">Admonitions<a class="headerlink" href="#admonitions" title="Link to this section">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Worth knowing</p>
+<p>Admonition blocks are available for asides that shouldn&rsquo;t interrupt the main argument.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Careful</p>
+<p>This one signals risk. It uses a different accent colour from the note above.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>And an untitled tip, which falls back to a generic label.</p>
+</div>
+<h2 id="footnotes">Footnotes<a class="headerlink" href="#footnotes" title="Link to this section">&para;</a></h2>
+<p>Claims that need a citation can carry one<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, and the reference collects at the bottom of the page<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
+<h2 id="a-long-passage">A long passage<a class="headerlink" href="#a-long-passage" title="Link to this section">&para;</a></h2>
+<p>To judge vertical rhythm properly you need more than a couple of lines, so here is a stretch of continuous prose. The spacing between paragraphs should be large enough to signal a break in thought but not so large that the page feels sparse and scrolling becomes a chore. Roughly one and three-quarter times the line height tends to land in the right place.</p>
+<p>Dark mode is not simply an inversion. Pure white on pure black produces halation, where the light text appears to bleed into the surrounding darkness, and long passages become genuinely tiring. The dark palette here uses an off-black background and a warm off-white foreground, which holds contrast without the glare.</p>
+<p>Finally, the reading progress bar at the very top gives a sense of how much remains, and the sidebar contents panel tracks your position as you scroll. Neither is essential, but both reduce the small anxiety of not knowing how long a document is going to take.</p>
+<hr>
+<p>That&rsquo;s the end of the test.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Footnotes render in a separate block below a rule, at a smaller size.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>With a back-reference arrow to return you to your place in the text.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+  </main>
+  <footer class="doc-foot">
+    <span>17 September 2026</span>
+    <span><a href="../">&larr; all documents</a></span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById("theme-toggle");
+  btn.addEventListener("click", function () {
+    var cur = root.getAttribute("data-theme");
+    if (!cur) cur = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    var next = cur === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("read-theme", next); } catch (e) {}
+  });
+
+  var bar = document.getElementById("progress");
+  var topbar = document.getElementById("topbar");
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? Math.min(100, (window.scrollY / h) * 100) : 0) + "%";
+      topbar.classList.toggle("scrolled", window.scrollY > 8);
+      ticking = false;
+    });
+  }
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  document.querySelectorAll(".codehilite").forEach(function (block) {
+    var b = document.createElement("button");
+    b.className = "copy-btn"; b.type = "button"; b.textContent = "Copy";
+    b.addEventListener("click", function () {
+      var code = block.querySelector("code");
+      navigator.clipboard.writeText(code ? code.innerText : "").then(function () {
+        b.textContent = "Copied"; b.classList.add("done");
+        setTimeout(function () { b.textContent = "Copy"; b.classList.remove("done"); }, 1600);
+      });
+    });
+    block.appendChild(b);
+  });
+
+  var links = [].slice.call(document.querySelectorAll("nav.toc a"));
+  if (links.length) {
+    var map = {};
+    var targets = links.map(function (a) {
+      var el = document.getElementById(decodeURIComponent(a.hash.slice(1)));
+      if (el) map[el.id] = a;
+      return el;
+    }).filter(Boolean);
+    var seen = new Set();
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) seen.add(e.target.id); else seen.delete(e.target.id);
+      });
+      var active = targets.filter(function (t) { return seen.has(t.id); })[0];
+      if (!active) {
+        for (var i = targets.length - 1; i >= 0; i--) {
+          if (targets[i].getBoundingClientRect().top < 120) { active = targets[i]; break; }
+        }
+      }
+      links.forEach(function (a) { a.classList.remove("active"); });
+      if (active && map[active.id]) map[active.id].classList.add("active");
+    }, { rootMargin: "-80px 0px -70% 0px", threshold: 0 });
+    targets.forEach(function (t) { obs.observe(t); });
+  }
+})();
+</script>
+</body>
+</html>
