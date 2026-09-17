@@ -399,9 +399,12 @@ def refresh_series(entries: list[dict]) -> int:
                     f'<span class="t">{html.escape(next_e["title"])}</span></a>'
                 )
             others = "".join(
-                f'<li{" class=\"here\"" if m["slug"] == e["slug"] else ""}>'
-                f'<a href="../{m["slug"]}/"><span class="n">{m.get("part") or j + 1}</span>'
-                f'{html.escape(m["title"])}</a></li>'
+                "<li{}><a href=\"../{}/\"><span class=\"n\">{}</span>{}</a></li>".format(
+                    ' class="here"' if m["slug"] == e["slug"] else "",
+                    m["slug"],
+                    m.get("part") or j + 1,
+                    html.escape(m["title"]),
+                )
                 for j, m in enumerate(members)
             )
             nav = (

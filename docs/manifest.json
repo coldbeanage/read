@@ -18,5 +18,53 @@
     "words": 240,
     "minutes": 1,
     "updated": "2026-09-17T07:54:24+0000"
+  },
+  {
+    "slug": "jev-primer",
+    "title": "Jev / RLCD: grounding primer",
+    "description": "What TypeSafe AI shipped, what RLCD actually optimizes for, and which numbers are vendor-sourced versus independently tested.",
+    "published": "2026-09-17",
+    "date_h": "17 September 2026",
+    "words": 962,
+    "minutes": 4,
+    "series": "Jev and the economics of machine judgment",
+    "part": 1,
+    "updated": "2026-09-17T08:23:02+0000"
+  },
+  {
+    "slug": "jev-economic-impact",
+    "title": "The economic impact of Jev-like models",
+    "description": "Judgment becomes a metered utility at ~$0.000003 a call. What that does to costs, capex, labour, and the products built on top.",
+    "published": "2026-09-17",
+    "date_h": "17 September 2026",
+    "words": 2301,
+    "minutes": 10,
+    "series": "Jev and the economics of machine judgment",
+    "part": 2,
+    "updated": "2026-09-17T08:23:02+0000"
+  },
+  {
+    "slug": "jev-new-products",
+    "title": "New products enabled by decision models",
+    "description": "Thirty-two product ideas across supervision, consumer, SMB, regulated verticals, and the physical world.",
+    "published": "2026-09-17",
+    "date_h": "17 September 2026",
+    "words": 2289,
+    "minutes": 10,
+    "series": "Jev and the economics of machine judgment",
+    "part": 3,
+    "updated": "2026-09-17T08:23:02+0000"
+  },
+  {
+    "slug": "jev-displaced-and-changed",
+    "title": "What decision models displace, replace, and change",
+    "description": "Three waves of displacement, the job numbers, the vendors in the blast radius, and what survives.",
+    "published": "2026-09-17",
+    "date_h": "17 September 2026",
+    "words": 1745,
+    "minutes": 8,
+    "series": "Jev and the economics of machine judgment",
+    "part": 4,
+    "updated": "2026-09-17T08:23:02+0000"
   }
 ]
