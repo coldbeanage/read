@@ -8,5 +8,15 @@
     "words": 658,
     "minutes": 3,
     "updated": "2026-09-17T07:51:36+0000"
+  },
+  {
+    "slug": "how-it-works",
+    "title": "How This Pipeline Works",
+    "description": "You hand over a Markdown or HTML file. A few seconds later you get a link. That\u2019s the whole interaction.",
+    "published": "2026-09-17",
+    "date_h": "17 September 2026",
+    "words": 240,
+    "minutes": 1,
+    "updated": "2026-09-17T07:54:24+0000"
   }
 ]
