@@ -474,7 +474,9 @@ def build_index(entries: list[dict]) -> str:
 # ----------------------------------------------------------------- main
 def main() -> None:
     ap = argparse.ArgumentParser(description="Publish a document to GitHub Pages.")
-    ap.add_argument("file", help="path to .md or .html")
+    ap.add_argument("file", nargs="?", help="path to .md or .html")
+    ap.add_argument("--sync", action="store_true",
+                    help="push theme/asset changes only; republishes nothing")
     ap.add_argument("--slug", help="URL path segment (default: from filename)")
     ap.add_argument("--title", help="override the title")
     ap.add_argument("--desc", help="override the description")
@@ -484,6 +486,26 @@ def main() -> None:
     ap.add_argument("--series", help="group with other docs under this series name")
     ap.add_argument("--part", type=int, help="position within the series")
     args = ap.parse_args()
+
+    if args.sync:
+        shutil.copytree(ASSETS, DOCS / "assets", dirs_exist_ok=True)
+        entries = json.loads(MANIFEST.read_text()) if MANIFEST.exists() else []
+        touched = refresh_series(entries)
+        (DOCS / "index.html").write_text(build_index(entries), encoding="utf-8")
+        if not args.no_push:
+            run(["git", "add", "-A"])
+            if run(["git", "status", "--porcelain"]).stdout.strip():
+                run(["git", "commit", "-m", "sync theme assets"])
+                branch = run(["git", "rev-parse", "--abbrev-ref", "HEAD"]).stdout.strip() or "main"
+                pr = run(["git", "push", "origin", branch])
+                if pr.returncode != 0:
+                    die(f"push failed:\n{pr.stdout}\n{pr.stderr}")
+        print(json.dumps({"synced": True, "docs": len(entries),
+                          "series_pages_updated": touched, "pushed": not args.no_push}, indent=2))
+        return
+
+    if not args.file:
+        die("give me a file, or use --sync for theme-only changes")
 
     src_path = Path(args.file).expanduser().resolve()
     if not src_path.is_file():
@@ -566,6 +588,10 @@ def main() -> None:
         date_iso, date_h = now.strftime("%Y-%m-%d"), now.strftime("%d %B %Y")
 
     # ---- write
+    # sync assets first: docs/assets is a copy, and shipping a stale one
+    # silently breaks every page's styling
+    shutil.copytree(ASSETS, DOCS / "assets", dirs_exist_ok=True)
+
     out_dir = DOCS / slug
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -622,8 +648,6 @@ def main() -> None:
     series_touched = refresh_series(entries)
     (DOCS / "index.html").write_text(build_index(entries), encoding="utf-8")
     (DOCS / ".nojekyll").touch()
-
-    shutil.copytree(ASSETS, DOCS / "assets", dirs_exist_ok=True)
 
     # ---- publish
     repo = os.environ.get("READ_REPO", "")
