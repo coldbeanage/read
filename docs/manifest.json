@@ -20,18 +20,6 @@
     "updated": "2026-09-17T07:54:24+0000"
   },
   {
-    "slug": "jev-primer",
-    "title": "Jev / RLCD: grounding primer",
-    "description": "What TypeSafe AI shipped, what RLCD actually optimizes for, and which numbers are vendor-sourced versus independently tested.",
-    "published": "2026-09-17",
-    "date_h": "17 September 2026",
-    "words": 962,
-    "minutes": 4,
-    "series": "Jev and the economics of machine judgment",
-    "part": 1,
-    "updated": "2026-09-17T08:23:02+0000"
-  },
-  {
     "slug": "jev-economic-impact",
     "title": "The economic impact of Jev-like models",
     "description": "Judgment becomes a metered utility at ~$0.000003 a call. What that does to costs, capex, labour, and the products built on top.",
@@ -66,5 +54,17 @@
     "series": "Jev and the economics of machine judgment",
     "part": 4,
     "updated": "2026-09-17T08:23:02+0000"
+  },
+  {
+    "slug": "jev-primer",
+    "title": "Jev / RLCD: grounding primer",
+    "description": "What TypeSafe AI shipped, what RLCD actually optimizes for, and which numbers are vendor-sourced versus independently tested.",
+    "published": "2026-09-17",
+    "date_h": "17 September 2026",
+    "words": 962,
+    "minutes": 4,
+    "series": "Jev and the economics of machine judgment",
+    "part": 1,
+    "updated": "2026-09-17T08:28:28+0000"
   }
 ]
