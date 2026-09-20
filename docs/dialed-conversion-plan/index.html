@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>dialed — sales conversion plan</title>
+<meta name="description" content="Why an Android minimalist launcher with 403 installs has converted zero sales, and three researched options to fix it.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dialed — sales conversion plan">
+<meta property="og:description" content="Why an Android minimalist launcher with 403 installs has converted zero sales, and three researched options to fix it.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/literata-latin-400-normal.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/inter-latin-600-normal.woff2">
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/theme.css">
+<style>
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #ffffff; }
+.codehilite .c { color: #177500 } /* Comment */
+.codehilite .err { color: #000 } /* Error */
+.codehilite .k { color: #A90D91 } /* Keyword */
+.codehilite .l { color: #1C01CE } /* Literal */
+.codehilite .n { color: #000 } /* Name */
+.codehilite .o { color: #000 } /* Operator */
+.codehilite .ch { color: #177500 } /* Comment.Hashbang */
+.codehilite .cm { color: #177500 } /* Comment.Multiline */
+.codehilite .cp { color: #633820 } /* Comment.Preproc */
+.codehilite .cpf { color: #177500 } /* Comment.PreprocFile */
+.codehilite .c1 { color: #177500 } /* Comment.Single */
+.codehilite .cs { color: #177500 } /* Comment.Special */
+.codehilite .kc { color: #A90D91 } /* Keyword.Constant */
+.codehilite .kd { color: #A90D91 } /* Keyword.Declaration */
+.codehilite .kn { color: #A90D91 } /* Keyword.Namespace */
+.codehilite .kp { color: #A90D91 } /* Keyword.Pseudo */
+.codehilite .kr { color: #A90D91 } /* Keyword.Reserved */
+.codehilite .kt { color: #A90D91 } /* Keyword.Type */
+.codehilite .ld { color: #1C01CE } /* Literal.Date */
+.codehilite .m { color: #1C01CE } /* Literal.Number */
+.codehilite .s { color: #C41A16 } /* Literal.String */
+.codehilite .na { color: #836C28 } /* Name.Attribute */
+.codehilite .nb { color: #A90D91 } /* Name.Builtin */
+.codehilite .nc { color: #3F6E75 } /* Name.Class */
+.codehilite .no { color: #000 } /* Name.Constant */
+.codehilite .nd { color: #000 } /* Name.Decorator */
+.codehilite .ni { color: #000 } /* Name.Entity */
+.codehilite .ne { color: #000 } /* Name.Exception */
+.codehilite .nf { color: #000 } /* Name.Function */
+.codehilite .nl { color: #000 } /* Name.Label */
+.codehilite .nn { color: #000 } /* Name.Namespace */
+.codehilite .nx { color: #000 } /* Name.Other */
+.codehilite .py { color: #000 } /* Name.Property */
+.codehilite .nt { color: #000 } /* Name.Tag */
+.codehilite .nv { color: #000 } /* Name.Variable */
+.codehilite .ow { color: #000 } /* Operator.Word */
+.codehilite .mb { color: #1C01CE } /* Literal.Number.Bin */
+.codehilite .mf { color: #1C01CE } /* Literal.Number.Float */
+.codehilite .mh { color: #1C01CE } /* Literal.Number.Hex */
+.codehilite .mi { color: #1C01CE } /* Literal.Number.Integer */
+.codehilite .mo { color: #1C01CE } /* Literal.Number.Oct */
+.codehilite .sa { color: #C41A16 } /* Literal.String.Affix */
+.codehilite .sb { color: #C41A16 } /* Literal.String.Backtick */
+.codehilite .sc { color: #2300CE } /* Literal.String.Char */
+.codehilite .dl { color: #C41A16 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #C41A16 } /* Literal.String.Doc */
+.codehilite .s2 { color: #C41A16 } /* Literal.String.Double */
+.codehilite .se { color: #C41A16 } /* Literal.String.Escape */
+.codehilite .sh { color: #C41A16 } /* Literal.String.Heredoc */
+.codehilite .si { color: #C41A16 } /* Literal.String.Interpol */
+.codehilite .sx { color: #C41A16 } /* Literal.String.Other */
+.codehilite .sr { color: #C41A16 } /* Literal.String.Regex */
+.codehilite .s1 { color: #C41A16 } /* Literal.String.Single */
+.codehilite .ss { color: #C41A16 } /* Literal.String.Symbol */
+.codehilite .bp { color: #5B269A } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #000 } /* Name.Function.Magic */
+.codehilite .vc { color: #000 } /* Name.Variable.Class */
+.codehilite .vg { color: #000 } /* Name.Variable.Global */
+.codehilite .vi { color: #000 } /* Name.Variable.Instance */
+.codehilite .vm { color: #000 } /* Name.Variable.Magic */
+.codehilite .il { color: #1C01CE } /* Literal.Number.Integer.Long */
+pre { line-height: 125%; }
+td.linenos .normal { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+html[data-theme="dark"] .codehilite .hll { background-color: #6e7681 }
+html[data-theme="dark"] .codehilite { background: #0d1117; color: #E6EDF3 }
+html[data-theme="dark"] .codehilite .c { color: #8B949E; font-style: italic } /* Comment */
+html[data-theme="dark"] .codehilite .err { color: #F85149 } /* Error */
+html[data-theme="dark"] .codehilite .esc { color: #E6EDF3 } /* Escape */
+html[data-theme="dark"] .codehilite .g { color: #E6EDF3 } /* Generic */
+html[data-theme="dark"] .codehilite .k { color: #FF7B72 } /* Keyword */
+html[data-theme="dark"] .codehilite .l { color: #A5D6FF } /* Literal */
+html[data-theme="dark"] .codehilite .n { color: #E6EDF3 } /* Name */
+html[data-theme="dark"] .codehilite .o { color: #FF7B72; font-weight: bold } /* Operator */
+html[data-theme="dark"] .codehilite .x { color: #E6EDF3 } /* Other */
+html[data-theme="dark"] .codehilite .p { color: #E6EDF3 } /* Punctuation */
+html[data-theme="dark"] .codehilite .ch { color: #8B949E; font-style: italic } /* Comment.Hashbang */
+html[data-theme="dark"] .codehilite .cm { color: #8B949E; font-style: italic } /* Comment.Multiline */
+html[data-theme="dark"] .codehilite .cp { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Preproc */
+html[data-theme="dark"] .codehilite .cpf { color: #8B949E; font-style: italic } /* Comment.PreprocFile */
+html[data-theme="dark"] .codehilite .c1 { color: #8B949E; font-style: italic } /* Comment.Single */
+html[data-theme="dark"] .codehilite .cs { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Special */
+html[data-theme="dark"] .codehilite .gd { color: #FFA198; background-color: #490202 } /* Generic.Deleted */
+html[data-theme="dark"] .codehilite .ge { color: #E6EDF3; font-style: italic } /* Generic.Emph */
+html[data-theme="dark"] .codehilite .ges { color: #E6EDF3; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+html[data-theme="dark"] .codehilite .gr { color: #FFA198 } /* Generic.Error */
+html[data-theme="dark"] .codehilite .gh { color: #79C0FF; font-weight: bold } /* Generic.Heading */
+html[data-theme="dark"] .codehilite .gi { color: #56D364; background-color: #0F5323 } /* Generic.Inserted */
+html[data-theme="dark"] .codehilite .go { color: #8B949E } /* Generic.Output */
+html[data-theme="dark"] .codehilite .gp { color: #8B949E } /* Generic.Prompt */
+html[data-theme="dark"] .codehilite .gs { color: #E6EDF3; font-weight: bold } /* Generic.Strong */
+html[data-theme="dark"] .codehilite .gu { color: #79C0FF } /* Generic.Subheading */
+html[data-theme="dark"] .codehilite .gt { color: #FF7B72 } /* Generic.Traceback */
+html[data-theme="dark"] .codehilite .g-Underline { color: #E6EDF3; text-decoration: underline } /* Generic.Underline */
+html[data-theme="dark"] .codehilite .kc { color: #79C0FF } /* Keyword.Constant */
+html[data-theme="dark"] .codehilite .kd { color: #FF7B72 } /* Keyword.Declaration */
+html[data-theme="dark"] .codehilite .kn { color: #FF7B72 } /* Keyword.Namespace */
+html[data-theme="dark"] .codehilite .kp { color: #79C0FF } /* Keyword.Pseudo */
+html[data-theme="dark"] .codehilite .kr { color: #FF7B72 } /* Keyword.Reserved */
+html[data-theme="dark"] .codehilite .kt { color: #FF7B72 } /* Keyword.Type */
+html[data-theme="dark"] .codehilite .ld { color: #79C0FF } /* Literal.Date */
+html[data-theme="dark"] .codehilite .m { color: #A5D6FF } /* Literal.Number */
+html[data-theme="dark"] .codehilite .s { color: #A5D6FF } /* Literal.String */
+html[data-theme="dark"] .codehilite .na { color: #E6EDF3 } /* Name.Attribute */
+html[data-theme="dark"] .codehilite .nb { color: #E6EDF3 } /* Name.Builtin */
+html[data-theme="dark"] .codehilite .nc { color: #F0883E; font-weight: bold } /* Name.Class */
+html[data-theme="dark"] .codehilite .no { color: #79C0FF; font-weight: bold } /* Name.Constant */
+html[data-theme="dark"] .codehilite .nd { color: #D2A8FF; font-weight: bold } /* Name.Decorator */
+html[data-theme="dark"] .codehilite .ni { color: #FFA657 } /* Name.Entity */
+html[data-theme="dark"] .codehilite .ne { color: #F0883E; font-weight: bold } /* Name.Exception */
+html[data-theme="dark"] .codehilite .nf { color: #D2A8FF; font-weight: bold } /* Name.Function */
+html[data-theme="dark"] .codehilite .nl { color: #79C0FF; font-weight: bold } /* Name.Label */
+html[data-theme="dark"] .codehilite .nn { color: #FF7B72 } /* Name.Namespace */
+html[data-theme="dark"] .codehilite .nx { color: #E6EDF3 } /* Name.Other */
+html[data-theme="dark"] .codehilite .py { color: #79C0FF } /* Name.Property */
+html[data-theme="dark"] .codehilite .nt { color: #7EE787 } /* Name.Tag */
+html[data-theme="dark"] .codehilite .nv { color: #79C0FF } /* Name.Variable */
+html[data-theme="dark"] .codehilite .ow { color: #FF7B72; font-weight: bold } /* Operator.Word */
+html[data-theme="dark"] .codehilite .pm { color: #E6EDF3 } /* Punctuation.Marker */
+html[data-theme="dark"] .codehilite .w { color: #6E7681 } /* Text.Whitespace */
+html[data-theme="dark"] .codehilite .mb { color: #A5D6FF } /* Literal.Number.Bin */
+html[data-theme="dark"] .codehilite .mf { color: #A5D6FF } /* Literal.Number.Float */
+html[data-theme="dark"] .codehilite .mh { color: #A5D6FF } /* Literal.Number.Hex */
+html[data-theme="dark"] .codehilite .mi { color: #A5D6FF } /* Literal.Number.Integer */
+html[data-theme="dark"] .codehilite .mo { color: #A5D6FF } /* Literal.Number.Oct */
+html[data-theme="dark"] .codehilite .sa { color: #79C0FF } /* Literal.String.Affix */
+html[data-theme="dark"] .codehilite .sb { color: #A5D6FF } /* Literal.String.Backtick */
+html[data-theme="dark"] .codehilite .sc { color: #A5D6FF } /* Literal.String.Char */
+html[data-theme="dark"] .codehilite .dl { color: #79C0FF } /* Literal.String.Delimiter */
+html[data-theme="dark"] .codehilite .sd { color: #A5D6FF } /* Literal.String.Doc */
+html[data-theme="dark"] .codehilite .s2 { color: #A5D6FF } /* Literal.String.Double */
+html[data-theme="dark"] .codehilite .se { color: #79C0FF } /* Literal.String.Escape */
+html[data-theme="dark"] .codehilite .sh { color: #79C0FF } /* Literal.String.Heredoc */
+html[data-theme="dark"] .codehilite .si { color: #A5D6FF } /* Literal.String.Interpol */
+html[data-theme="dark"] .codehilite .sx { color: #A5D6FF } /* Literal.String.Other */
+html[data-theme="dark"] .codehilite .sr { color: #79C0FF } /* Literal.String.Regex */
+html[data-theme="dark"] .codehilite .s1 { color: #A5D6FF } /* Literal.String.Single */
+html[data-theme="dark"] .codehilite .ss { color: #A5D6FF } /* Literal.String.Symbol */
+html[data-theme="dark"] .codehilite .bp { color: #E6EDF3 } /* Name.Builtin.Pseudo */
+html[data-theme="dark"] .codehilite .fm { color: #D2A8FF; font-weight: bold } /* Name.Function.Magic */
+html[data-theme="dark"] .codehilite .vc { color: #79C0FF } /* Name.Variable.Class */
+html[data-theme="dark"] .codehilite .vg { color: #79C0FF } /* Name.Variable.Global */
+html[data-theme="dark"] .codehilite .vi { color: #79C0FF } /* Name.Variable.Instance */
+html[data-theme="dark"] .codehilite .vm { color: #79C0FF } /* Name.Variable.Magic */
+html[data-theme="dark"] .codehilite .il { color: #A5D6FF } /* Literal.Number.Integer.Long */
+@media (prefers-color-scheme: dark) {
+pre { line-height: 125%; }
+td.linenos .normal { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #e6edf3; background-color: #6e7681; padding-left: 5px; padding-right: 5px; }
+html:not([data-theme="light"]) .codehilite .hll { background-color: #6e7681 }
+html:not([data-theme="light"]) .codehilite { background: #0d1117; color: #E6EDF3 }
+html:not([data-theme="light"]) .codehilite .c { color: #8B949E; font-style: italic } /* Comment */
+html:not([data-theme="light"]) .codehilite .err { color: #F85149 } /* Error */
+html:not([data-theme="light"]) .codehilite .esc { color: #E6EDF3 } /* Escape */
+html:not([data-theme="light"]) .codehilite .g { color: #E6EDF3 } /* Generic */
+html:not([data-theme="light"]) .codehilite .k { color: #FF7B72 } /* Keyword */
+html:not([data-theme="light"]) .codehilite .l { color: #A5D6FF } /* Literal */
+html:not([data-theme="light"]) .codehilite .n { color: #E6EDF3 } /* Name */
+html:not([data-theme="light"]) .codehilite .o { color: #FF7B72; font-weight: bold } /* Operator */
+html:not([data-theme="light"]) .codehilite .x { color: #E6EDF3 } /* Other */
+html:not([data-theme="light"]) .codehilite .p { color: #E6EDF3 } /* Punctuation */
+html:not([data-theme="light"]) .codehilite .ch { color: #8B949E; font-style: italic } /* Comment.Hashbang */
+html:not([data-theme="light"]) .codehilite .cm { color: #8B949E; font-style: italic } /* Comment.Multiline */
+html:not([data-theme="light"]) .codehilite .cp { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Preproc */
+html:not([data-theme="light"]) .codehilite .cpf { color: #8B949E; font-style: italic } /* Comment.PreprocFile */
+html:not([data-theme="light"]) .codehilite .c1 { color: #8B949E; font-style: italic } /* Comment.Single */
+html:not([data-theme="light"]) .codehilite .cs { color: #8B949E; font-weight: bold; font-style: italic } /* Comment.Special */
+html:not([data-theme="light"]) .codehilite .gd { color: #FFA198; background-color: #490202 } /* Generic.Deleted */
+html:not([data-theme="light"]) .codehilite .ge { color: #E6EDF3; font-style: italic } /* Generic.Emph */
+html:not([data-theme="light"]) .codehilite .ges { color: #E6EDF3; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+html:not([data-theme="light"]) .codehilite .gr { color: #FFA198 } /* Generic.Error */
+html:not([data-theme="light"]) .codehilite .gh { color: #79C0FF; font-weight: bold } /* Generic.Heading */
+html:not([data-theme="light"]) .codehilite .gi { color: #56D364; background-color: #0F5323 } /* Generic.Inserted */
+html:not([data-theme="light"]) .codehilite .go { color: #8B949E } /* Generic.Output */
+html:not([data-theme="light"]) .codehilite .gp { color: #8B949E } /* Generic.Prompt */
+html:not([data-theme="light"]) .codehilite .gs { color: #E6EDF3; font-weight: bold } /* Generic.Strong */
+html:not([data-theme="light"]) .codehilite .gu { color: #79C0FF } /* Generic.Subheading */
+html:not([data-theme="light"]) .codehilite .gt { color: #FF7B72 } /* Generic.Traceback */
+html:not([data-theme="light"]) .codehilite .g-Underline { color: #E6EDF3; text-decoration: underline } /* Generic.Underline */
+html:not([data-theme="light"]) .codehilite .kc { color: #79C0FF } /* Keyword.Constant */
+html:not([data-theme="light"]) .codehilite .kd { color: #FF7B72 } /* Keyword.Declaration */
+html:not([data-theme="light"]) .codehilite .kn { color: #FF7B72 } /* Keyword.Namespace */
+html:not([data-theme="light"]) .codehilite .kp { color: #79C0FF } /* Keyword.Pseudo */
+html:not([data-theme="light"]) .codehilite .kr { color: #FF7B72 } /* Keyword.Reserved */
+html:not([data-theme="light"]) .codehilite .kt { color: #FF7B72 } /* Keyword.Type */
+html:not([data-theme="light"]) .codehilite .ld { color: #79C0FF } /* Literal.Date */
+html:not([data-theme="light"]) .codehilite .m { color: #A5D6FF } /* Literal.Number */
+html:not([data-theme="light"]) .codehilite .s { color: #A5D6FF } /* Literal.String */
+html:not([data-theme="light"]) .codehilite .na { color: #E6EDF3 } /* Name.Attribute */
+html:not([data-theme="light"]) .codehilite .nb { color: #E6EDF3 } /* Name.Builtin */
+html:not([data-theme="light"]) .codehilite .nc { color: #F0883E; font-weight: bold } /* Name.Class */
+html:not([data-theme="light"]) .codehilite .no { color: #79C0FF; font-weight: bold } /* Name.Constant */
+html:not([data-theme="light"]) .codehilite .nd { color: #D2A8FF; font-weight: bold } /* Name.Decorator */
+html:not([data-theme="light"]) .codehilite .ni { color: #FFA657 } /* Name.Entity */
+html:not([data-theme="light"]) .codehilite .ne { color: #F0883E; font-weight: bold } /* Name.Exception */
+html:not([data-theme="light"]) .codehilite .nf { color: #D2A8FF; font-weight: bold } /* Name.Function */
+html:not([data-theme="light"]) .codehilite .nl { color: #79C0FF; font-weight: bold } /* Name.Label */
+html:not([data-theme="light"]) .codehilite .nn { color: #FF7B72 } /* Name.Namespace */
+html:not([data-theme="light"]) .codehilite .nx { color: #E6EDF3 } /* Name.Other */
+html:not([data-theme="light"]) .codehilite .py { color: #79C0FF } /* Name.Property */
+html:not([data-theme="light"]) .codehilite .nt { color: #7EE787 } /* Name.Tag */
+html:not([data-theme="light"]) .codehilite .nv { color: #79C0FF } /* Name.Variable */
+html:not([data-theme="light"]) .codehilite .ow { color: #FF7B72; font-weight: bold } /* Operator.Word */
+html:not([data-theme="light"]) .codehilite .pm { color: #E6EDF3 } /* Punctuation.Marker */
+html:not([data-theme="light"]) .codehilite .w { color: #6E7681 } /* Text.Whitespace */
+html:not([data-theme="light"]) .codehilite .mb { color: #A5D6FF } /* Literal.Number.Bin */
+html:not([data-theme="light"]) .codehilite .mf { color: #A5D6FF } /* Literal.Number.Float */
+html:not([data-theme="light"]) .codehilite .mh { color: #A5D6FF } /* Literal.Number.Hex */
+html:not([data-theme="light"]) .codehilite .mi { color: #A5D6FF } /* Literal.Number.Integer */
+html:not([data-theme="light"]) .codehilite .mo { color: #A5D6FF } /* Literal.Number.Oct */
+html:not([data-theme="light"]) .codehilite .sa { color: #79C0FF } /* Literal.String.Affix */
+html:not([data-theme="light"]) .codehilite .sb { color: #A5D6FF } /* Literal.String.Backtick */
+html:not([data-theme="light"]) .codehilite .sc { color: #A5D6FF } /* Literal.String.Char */
+html:not([data-theme="light"]) .codehilite .dl { color: #79C0FF } /* Literal.String.Delimiter */
+html:not([data-theme="light"]) .codehilite .sd { color: #A5D6FF } /* Literal.String.Doc */
+html:not([data-theme="light"]) .codehilite .s2 { color: #A5D6FF } /* Literal.String.Double */
+html:not([data-theme="light"]) .codehilite .se { color: #79C0FF } /* Literal.String.Escape */
+html:not([data-theme="light"]) .codehilite .sh { color: #79C0FF } /* Literal.String.Heredoc */
+html:not([data-theme="light"]) .codehilite .si { color: #A5D6FF } /* Literal.String.Interpol */
+html:not([data-theme="light"]) .codehilite .sx { color: #A5D6FF } /* Literal.String.Other */
+html:not([data-theme="light"]) .codehilite .sr { color: #79C0FF } /* Literal.String.Regex */
+html:not([data-theme="light"]) .codehilite .s1 { color: #A5D6FF } /* Literal.String.Single */
+html:not([data-theme="light"]) .codehilite .ss { color: #A5D6FF } /* Literal.String.Symbol */
+html:not([data-theme="light"]) .codehilite .bp { color: #E6EDF3 } /* Name.Builtin.Pseudo */
+html:not([data-theme="light"]) .codehilite .fm { color: #D2A8FF; font-weight: bold } /* Name.Function.Magic */
+html:not([data-theme="light"]) .codehilite .vc { color: #79C0FF } /* Name.Variable.Class */
+html:not([data-theme="light"]) .codehilite .vg { color: #79C0FF } /* Name.Variable.Global */
+html:not([data-theme="light"]) .codehilite .vi { color: #79C0FF } /* Name.Variable.Instance */
+html:not([data-theme="light"]) .codehilite .vm { color: #79C0FF } /* Name.Variable.Magic */
+html:not([data-theme="light"]) .codehilite .il { color: #A5D6FF } /* Literal.Number.Integer.Long */
+}
+
+</style>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("read-theme");
+      if (t) document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<div id="progress" role="presentation"></div>
+
+<div class="topbar" id="topbar">
+  <a class="home" href="../">read</a>
+  <span class="crumb">dialed — sales conversion plan</span>
+  <button class="iconbtn" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+</div>
+
+<div class="shell">
+  <header class="doc-head">
+    <!--SERIESKICKER--><!--/SERIESKICKER-->
+    <h1 class="title">dialed — sales conversion plan</h1>
+    
+    <p class="meta"><span>20 September 2026</span><span class="dot">&middot;</span><span>13 min read</span><span class="dot">&middot;</span><span>2,861 words</span></p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ul><li class="lvl-2"><a href="#11-the-paywall-is-nearly-unreachable">1.1 The paywall is nearly unreachable</a></li><li class="lvl-2"><a href="#12-the-gym-paywall-promises-two-things-that-are-already-free">1.2 🚨 The gym paywall promises two things that are already free</a></li><li class="lvl-2"><a href="#13-the-offer-itself-is-the-weakest-possible-frame">1.3 The offer itself is the weakest possible frame</a></li><li class="lvl-2"><a href="#14-every-paying-competitor-has-a-trial-dialed-has-none">1.4 Every paying competitor has a trial. dialed has none.</a></li><li class="lvl-2"><a href="#21-they-are-real-and-they-are-shopping">2.1 They are real and they are shopping</a></li><li class="lvl-2"><a href="#22-they-are-anti-subscription-not-anti-payment">2.2 🔑 They are anti-SUBSCRIPTION, not anti-PAYMENT</a></li><li class="lvl-2"><a href="#23-what-actually-triggers-payment">2.3 What actually triggers payment</a></li><li class="lvl-2"><a href="#24-privacy-is-a-hard-purchase-condition-not-a-nice-to-have">2.4 Privacy is a hard purchase condition, not a nice-to-have</a></li><li class="lvl-2"><a href="#25-why-they-churn-a-churned-user-never-pays">2.5 Why they churn (a churned user never pays)</a></li><li class="lvl-2"><a href="#26-on-the-gym-widget">2.6 On the gym widget</a></li><li class="lvl-2"><a href="#f4-in-detail-the-app-already-counts-the-right-moments">F4 in detail — the app already counts the right moments</a></li><li class="lvl-2"><a href="#option-a-patronage-monetise-affection-not-features">Option A — Patronage. Monetise affection, not features.</a></li><li class="lvl-2"><a href="#option-b-one-lifetime-dialed-pro-repriced-with-a-trial-recommended">Option B — One lifetime “dialed pro”, repriced, with a trial. ⭐ recommended</a></li><li class="lvl-2"><a href="#option-c-dont-monetise-harder-yet-fix-volume-and-retention-first">Option C — Don’t monetise harder yet. Fix volume and retention first.</a></li><li class="lvl-2"><a href="#sources">Sources</a></li></ul></details>
+  <nav class="toc" aria-label="Table of contents"><div class="toc-label">Contents</div><ul><li class="lvl-2"><a href="#11-the-paywall-is-nearly-unreachable">1.1 The paywall is nearly unreachable</a></li><li class="lvl-2"><a href="#12-the-gym-paywall-promises-two-things-that-are-already-free">1.2 🚨 The gym paywall promises two things that are already free</a></li><li class="lvl-2"><a href="#13-the-offer-itself-is-the-weakest-possible-frame">1.3 The offer itself is the weakest possible frame</a></li><li class="lvl-2"><a href="#14-every-paying-competitor-has-a-trial-dialed-has-none">1.4 Every paying competitor has a trial. dialed has none.</a></li><li class="lvl-2"><a href="#21-they-are-real-and-they-are-shopping">2.1 They are real and they are shopping</a></li><li class="lvl-2"><a href="#22-they-are-anti-subscription-not-anti-payment">2.2 🔑 They are anti-SUBSCRIPTION, not anti-PAYMENT</a></li><li class="lvl-2"><a href="#23-what-actually-triggers-payment">2.3 What actually triggers payment</a></li><li class="lvl-2"><a href="#24-privacy-is-a-hard-purchase-condition-not-a-nice-to-have">2.4 Privacy is a hard purchase condition, not a nice-to-have</a></li><li class="lvl-2"><a href="#25-why-they-churn-a-churned-user-never-pays">2.5 Why they churn (a churned user never pays)</a></li><li class="lvl-2"><a href="#26-on-the-gym-widget">2.6 On the gym widget</a></li><li class="lvl-2"><a href="#f4-in-detail-the-app-already-counts-the-right-moments">F4 in detail — the app already counts the right moments</a></li><li class="lvl-2"><a href="#option-a-patronage-monetise-affection-not-features">Option A — Patronage. Monetise affection, not features.</a></li><li class="lvl-2"><a href="#option-b-one-lifetime-dialed-pro-repriced-with-a-trial-recommended">Option B — One lifetime “dialed pro”, repriced, with a trial. ⭐ recommended</a></li><li class="lvl-2"><a href="#option-c-dont-monetise-harder-yet-fix-volume-and-retention-first">Option C — Don’t monetise harder yet. Fix volume and retention first.</a></li><li class="lvl-2"><a href="#sources">Sources</a></li></ul></nav>
+  <main class="prose" id="prose">
+<h1 id="dialed-sales-conversion-plan">dialed — sales conversion plan<a class="headerlink" href="#dialed-sales-conversion-plan" title="Link to this section">&para;</a></h1>
+<p>Date: 2026-09-20. Version audited: 1.3.22 (versionCode 45), commit <code>e254ac7</code>.</p>
+<p>Three inputs: a line-by-line audit of the shipped purchase funnel, a sourced survey of how
+every serious competitor in this category monetises, and primary-source research into who
+these customers actually are and what makes them pay.</p>
+<p><strong>Baseline being explained:</strong> ~403 installs, 17 ratings (mostly 5★), <strong>zero unlock sales</strong>,
+<strong>one <code>coffee_donation</code> tip</strong>. Install count is from Play Console on 2026-09-06 and is two
+weeks stale — confirm before using it for any projection.</p>
+<hr>
+<h1 id="part-1-why-nobody-has-paid">Part 1 — Why nobody has paid<a class="headerlink" href="#part-1-why-nobody-has-paid" title="Link to this section">&para;</a></h1>
+<h2 id="11-the-paywall-is-nearly-unreachable">1.1 The paywall is nearly unreachable<a class="headerlink" href="#11-the-paywall-is-nearly-unreachable" title="Link to this section">&para;</a></h2>
+<p>There are exactly two paths to a paywall in the whole app, both verified in source.</p>
+<p><strong>Focus gate ($3.99):</strong> settings → focus gate → select gated apps → already have 2 →
+tap a 3rd → dialog (<code>SettingsDialogs.kt:589</code>).</p>
+<p><strong>Gym ($4.49):</strong> settings → widgets → gym → already have 3 routines → <code>+ custom routine</code>
+→ dialog (<code>GymWidgetSettings.kt:257</code>).</p>
+<p>Every one of these is a problem:</p>
+<ul>
+<li><strong>The focus gate ships OFF.</strong> <code>MicroFrictionSettings(enabled = false, gatedApps = emptySet())</code>
+  (<code>LauncherUiState.kt:449</code>). The user must opt in, configure it to its cap, then want more.</li>
+<li><strong>Onboarding deliberately suppresses the offer.</strong> <code>MicroFrictionStep.kt:126,131</code> passes
+  <code>maxSelection = 2</code> with <strong><code>onUpgradeClick = null</code></strong>. At the cap during onboarding the user
+  gets a grey Toast, not an offer. The one moment 100% of users pass through is monetisation-free.</li>
+<li><strong>The paywall only ever appears as a rejection</strong> of something the user wanted, buried in
+  settings. It never appears at a moment of success.</li>
+<li><strong>The price is never shown, anywhere.</strong> Zero hits for <code>formattedPrice</code>,
+  <code>oneTimePurchaseOfferDetails</code>, or <code>priceAmountMicros</code> in the entire UI layer. The user is
+  asked to tap &ldquo;unlock&rdquo; with no number on screen.</li>
+<li><strong>No restore purchases.</strong> <code>queryPurchases()</code> does restore silently, but nothing tells the
+  user that, and &ldquo;do I lose it on a new phone&rdquo; is a real objection to a lifetime purchase.</li>
+<li><strong>Two SKUs, two walls, two flows, $8.48, no bundle.</strong></li>
+</ul>
+<p><strong>44.5% of all in-app purchases happen on day 0</strong> and 80-90% of trial starts do
+(<a href="https://www.revenuecat.com/blog/growth/sosa-2025-launch-sub-club">RevenueCat SOSA</a>).
+dialed&rsquo;s offer is structurally invisible on day 0, day 1, and most likely forever.</p>
+<blockquote>
+<p><strong>Zero sales is the correct output of this funnel at any price.</strong> This is not a pricing
+failure. Almost nobody has seen a price.</p>
+</blockquote>
+<h2 id="12-the-gym-paywall-promises-two-things-that-are-already-free">1.2 🚨 The gym paywall promises two things that are already free<a class="headerlink" href="#12-the-gym-paywall-promises-two-things-that-are-already-free" title="Link to this section">&para;</a></h2>
+<p><code>settings_gym_upgrade_notice</code> says:</p>
+<blockquote>
+<p>&ldquo;upgrade to unlock unlimited routines, log custom sets/reps, and access long-term weight history.&rdquo;</p>
+</blockquote>
+<p>Grep result: <strong><code>isGymUnlocked</code> gates exactly one condition in the entire codebase —
+<code>routines.size &gt;= 3</code>.</strong> Custom sets/reps (<code>AddExerciseDialog.kt</code>) and weight history
+(<code>workoutHistory</code>) have no entitlement check anywhere.</p>
+<ol>
+<li><strong>Play policy risk.</strong> A paid-feature description promising functionality the purchase does
+   not grant is actionable under Play&rsquo;s Monetisation and Metadata policies.</li>
+<li><strong>It breaks trust at the only moment that matters.</strong> A real gym user already logs custom
+   sets and already sees their history. The paywall is visibly lying to the single user most
+   likely to pay.</li>
+</ol>
+<p><strong>Fix this regardless of which option below is chosen.</strong></p>
+<h2 id="13-the-offer-itself-is-the-weakest-possible-frame">1.3 The offer itself is the weakest possible frame<a class="headerlink" href="#13-the-offer-itself-is-the-weakest-possible-frame" title="Link to this section">&para;</a></h2>
+<p>dialed sells <strong>quantity caps</strong>. &ldquo;Unlock unlimited apps&rdquo; / &ldquo;unlock unlimited routines.&rdquo;
+That is feature-and-limit framing at the exact point where outcome framing is proven to win:
+RevenueCat&rsquo;s own JTBD paywall rewrites produced <strong>up to 169% more free-to-paid conversions</strong>
+(<a href="https://www.revenuecat.com/blog/growth/jtbd-paywall-optimization">source</a>).</p>
+<h2 id="14-every-paying-competitor-has-a-trial-dialed-has-none">1.4 Every paying competitor has a trial. dialed has none.<a class="headerlink" href="#14-every-paying-competitor-has-a-trial-dialed-has-none" title="Link to this section">&para;</a></h2>
+<p>This was the clearest structural finding across the whole competitive set.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>App</th>
+<th>Model</th>
+<th>Trial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>minimalist phone</td>
+<td>lifetime $29.99-69.99 or sub</td>
+<td><strong>7-day full trial</strong></td>
+</tr>
+<tr>
+<td>Unlauncher</td>
+<td>one-time Pro</td>
+<td><strong>7-day Pro trial</strong></td>
+</tr>
+<tr>
+<td>Niagara</td>
+<td>$13.99/yr or $42.99 lifetime</td>
+<td><strong>trial before conversion</strong></td>
+</tr>
+<tr>
+<td>one sec</td>
+<td>sub + lifetime</td>
+<td><strong>1-week trial</strong></td>
+</tr>
+<tr>
+<td><strong>dialed</strong></td>
+<td><strong>$3.99 + $4.49 one-time</strong></td>
+<td><strong>none</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>dialed substitutes a permanent quantity cap for a trial. A cap teaches users the ceiling
+before it ever teaches them the value.</p>
+<hr>
+<h1 id="part-2-who-the-customer-actually-is">Part 2 — Who the customer actually is<a class="headerlink" href="#part-2-who-the-customer-actually-is" title="Link to this section">&para;</a></h1>
+<p>The internal audience picture is <strong>correct and well-evidenced</strong>. What was wrong is the
+assumption about money.</p>
+<h2 id="21-they-are-real-and-they-are-shopping">2.1 They are real and they are shopping<a class="headerlink" href="#21-they-are-real-and-they-are-shopping" title="Link to this section">&para;</a></h2>
+<blockquote>
+<p>&ldquo;I&rsquo;ve been looking for a perfect and definitive Minimalist Launcher for over 4 years. I&rsquo;ve
+used Niagara, Smart, Detox, OLauncher, all possible ones, and nothing.&rdquo;
+— <a href="https://reddit.com/r/digitalminimalism/comments/1hu5pkx/minimalist_android_launcher">r/digitalminimalism</a></p>
+<p>&ldquo;I am looking to move on from my iPhone onto a flip phone but still need a modern operating
+system for specific apps (like bus tickets and such).&rdquo;
+— <a href="https://www.reddit.com/r/dumbphones/comments/1j309tk/minimal_android_launcher_for_flip_phones">r/dumbphones</a></p>
+</blockquote>
+<p>28% of Gen Z adults report active interest in acquiring a dumbphone, doubled since 2022
+(<a href="https://www.outlierreport.com/en/news/148-percent-spike-dumb-phone-sales-gen-z-smartphone-backlash">Harris Poll via Outlier Report</a>).
+The dual-device / &ldquo;keep the smartphone, kill the distraction&rdquo; pathway is exactly dialed&rsquo;s promise.</p>
+<h2 id="22-they-are-anti-subscription-not-anti-payment">2.2 🔑 They are anti-SUBSCRIPTION, not anti-PAYMENT<a class="headerlink" href="#22-they-are-anti-subscription-not-anti-payment" title="Link to this section">&para;</a></h2>
+<p>This is the single most important correction to the current strategy.</p>
+<p><strong>Subscription hostility is loud and real:</strong></p>
+<blockquote>
+<p>&ldquo;I always find it ironic when these minimal launchers have subscriptions tied to them.
+Like bro it ain&rsquo;t costing you THAT MUCH to make this app lmao&rdquo; (44 points)</p>
+<p>&ldquo;Can you give a single logical reason why your app has monthly subscription? It should be
+one time payment and that&rsquo;s it&rdquo;</p>
+</blockquote>
+<p><strong>And the same communities pay real money, one time, happily:</strong></p>
+<blockquote>
+<p>&ldquo;I&rsquo;ve been using O Launcher for a year and just a week ago I decided to go to Pro Launcher.
+Two days using it and just decided to buy it. For what it offers and to show support to a
+dedicated dev I think that <strong>it was cheap</strong>.&rdquo; — on a <strong>$24.99-29.99</strong> purchase
+— <a href="https://www.reddit.com/r/digitalminimalism/comments/1bgxt18/has_anyone_tried_pro_launcher_the_premium_version/">r/digitalminimalism</a></p>
+<p>&ldquo;So far loving and I just paid for the lifetime subscription after trying every similar app
+I could find.&rdquo; — Play review, minimalist phone (<strong>$29.99-69.99 lifetime</strong>)</p>
+<p>&ldquo;So 30$ are less? I can buy a pair of good sneakers in $30&rdquo; — the anchor used in-thread</p>
+</blockquote>
+<p><strong>Observed successful one-time price points in this exact niche:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>App</th>
+<th>Lifetime price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Niagara Pro</td>
+<td><strong>$42.99</strong></td>
+</tr>
+<tr>
+<td>Olauncher Pro</td>
+<td><strong>$24.99-29.99</strong></td>
+</tr>
+<tr>
+<td>minimalist phone</td>
+<td><strong>$29.99-69.99</strong></td>
+</tr>
+<tr>
+<td><strong>dialed (both unlocks)</strong></td>
+<td><strong>$8.48</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>dialed is priced 3-5x below the floor of its own category</strong>, and RevenueCat finds
+higher-priced apps convert download-to-paying <em>better</em> (2.66% vs 1.49% median). Cheapness is
+not buying conversion here. It is signalling that there is nothing worth buying.</p>
+</blockquote>
+<h2 id="23-what-actually-triggers-payment">2.3 What actually triggers payment<a class="headerlink" href="#23-what-actually-triggers-payment" title="Link to this section">&para;</a></h2>
+<p>Ranked by strength of evidence:</p>
+<ol>
+<li><strong>Supporting an indie developer</strong> — repeatedly the stated reason, above feature value.<blockquote>
+<p>&ldquo;is there a way you can add in Olauncher a way for us to donate instead of upgrade to
+Prolauncher? I prefer Olauncher compared to the pro but <strong>paid for the pro just to support
+the project</strong>.&rdquo;</p>
+</blockquote>
+</li>
+<li><strong>Having already tried everything else</strong> — the purchase comes after long comparison.</li>
+<li><strong>Deep personalisation</strong> — &ldquo;the customisation of font was what made me pull the trigger.&rdquo;</li>
+<li><strong>A responsive developer with a visible feedback loop</strong> — Telegram groups, shipped requests.</li>
+<li><strong>Real enforcement</strong> — ADHD users already pay subscriptions for AppBlock/Daywise.</li>
+</ol>
+<h2 id="24-privacy-is-a-hard-purchase-condition-not-a-nice-to-have">2.4 Privacy is a hard purchase condition, not a nice-to-have<a class="headerlink" href="#24-privacy-is-a-hard-purchase-condition-not-a-nice-to-have" title="Link to this section">&para;</a></h2>
+<blockquote>
+<p>&ldquo;I did not mind the fee as much but I did delete the app after I realized they were sharing
+my info with third parties&hellip; <strong>not twice</strong>. If I am already paying for the subscription then
+they should not also be selling my data.&rdquo;</p>
+</blockquote>
+<p>Nova Launcher&rsquo;s acquisition by an analytics firm triggered a documented community exodus.
+dialed&rsquo;s verified zero-analytics position is a <strong>monetisable asset</strong>, currently mentioned
+nowhere near the point of purchase.</p>
+<h2 id="25-why-they-churn-a-churned-user-never-pays">2.5 Why they churn (a churned user never pays)<a class="headerlink" href="#25-why-they-churn-a-churned-user-never-pays" title="Link to this section">&para;</a></h2>
+<ol>
+<li>Feature limits that feel arbitrary — <em>&ldquo;I noticed that I could only hide 5 apps&rdquo;</em></li>
+<li>Missing affordances — <em>&ldquo;no widgets beyond the built-in clock&hellip; will annoy you within a day&rdquo;</em></li>
+<li><strong>A free tier that feels stingy</strong> — <em>&ldquo;they resent paying yearly for what a Pixel Launcher gives for free&rdquo;</em></li>
+<li>Bugs / lag / purchase-tracking failures</li>
+<li>Trust breaches</li>
+</ol>
+<p>⚠️ Note #3 against dialed&rsquo;s current design: <strong>quantity caps are precisely the &ldquo;arbitrary limit&rdquo;
+pattern this audience names as a churn trigger.</strong> dialed&rsquo;s generous free tier is an asset;
+its two caps are the one place it behaves like the apps they resent.</p>
+<h2 id="26-on-the-gym-widget">2.6 On the gym widget<a class="headerlink" href="#26-on-the-gym-widget" title="Link to this section">&para;</a></h2>
+<p>No direct evidence was found for or against a launcher bundling gym tracking. Adjacent signal
+leans against it as a <em>headline</em>: users describe deliberately pairing a minimal launcher with a
+separate blocking app rather than wanting one app to do everything, and a competing habit
+tracker markets &ldquo;no bloat&rdquo; as its core pitch.</p>
+<p><strong>Read:</strong> gym is fine as depth for retained users. It is a poor thing to lead with, and a poor
+thing to make the <em>higher-priced</em> SKU (which it currently is, at $4.49 vs $3.99).</p>
+<hr>
+<h1 id="part-3-the-arithmetic-stated-honestly">Part 3 — The arithmetic, stated honestly<a class="headerlink" href="#part-3-the-arithmetic-stated-honestly" title="Link to this section">&para;</a></h1>
+<p>At ~403 installs:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Conversion rate</th>
+<th>Sales</th>
+<th>Revenue @ $4</th>
+<th>Revenue @ $10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.2% (freemium median)</td>
+<td>9</td>
+<td>$36</td>
+<td>$89</td>
+</tr>
+<tr>
+<td>5% (good)</td>
+<td>20</td>
+<td>$81</td>
+<td>$201</td>
+</tr>
+<tr>
+<td>12% (hard-paywall median)</td>
+<td>48</td>
+<td>$193</td>
+<td>$483</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Fixing the funnel perfectly still does not produce a business at 403 installs.</strong> Anyone
+telling you otherwise is selling something.</p>
+<p>But the funnel must be fixed first, for three reasons:
+1. It is cheap — days, not weeks.
+2. Until it is fixed you <strong>cannot learn anything</strong>. There is no conversion rate to measure
+   because there is no denominator.
+3. Driving traffic into a funnel with an invisible, mispriced, partly-false offer wastes the
+   traffic and the goodwill.</p>
+<hr>
+<h1 id="part-4-the-foundation-do-this-regardless-of-which-option-you-pick">Part 4 — The foundation (do this regardless of which option you pick)<a class="headerlink" href="#part-4-the-foundation-do-this-regardless-of-which-option-you-pick" title="Link to this section">&para;</a></h1>
+<p>Roughly one focused pass. No strategic commitment required, nothing here is reversible-hostile.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Change</th>
+<th>Why</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>F1</strong></td>
+<td><strong>Cut the two false claims from the gym paywall copy</strong></td>
+<td>Play policy risk + trust</td>
+<td>§1.2, code-verified</td>
+</tr>
+<tr>
+<td><strong>F2</strong></td>
+<td><strong>Show the real localised price</strong> via <code>oneTimePurchaseOfferDetails.formattedPrice</code></td>
+<td>Baseline in every paywall guide reviewed</td>
+<td>§1.1</td>
+</tr>
+<tr>
+<td><strong>F3</strong></td>
+<td><strong>Add &ldquo;restore purchases&rdquo;</strong></td>
+<td>Standard trust element; kills the &ldquo;new phone&rdquo; objection</td>
+<td>Apphud/Qonversion guides</td>
+</tr>
+<tr>
+<td><strong>F4</strong></td>
+<td><strong>Move the offer to a moment of success</strong> (see below)</td>
+<td>Day-0/value-moment exposure is the most consistently evidenced lever</td>
+<td>RevenueCat SOSA</td>
+</tr>
+<tr>
+<td><strong>F5</strong></td>
+<td><strong>Rewrite copy from limits to outcomes</strong></td>
+<td>JTBD rewrites: up to +169%</td>
+<td>RevenueCat JTBD</td>
+</tr>
+<tr>
+<td><strong>F6</strong></td>
+<td><strong>Put &ldquo;no subscription. no ads. no analytics. ever.&rdquo; on the paywall</strong></td>
+<td>Privacy is a hard purchase condition here</td>
+<td>§2.4</td>
+</tr>
+<tr>
+<td><strong>F7</strong></td>
+<td><strong>Add one line of social proof</strong></td>
+<td>+10-15%</td>
+<td>Adapty paywall benchmarks</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="f4-in-detail-the-app-already-counts-the-right-moments">F4 in detail — the app already counts the right moments<a class="headerlink" href="#f4-in-detail-the-app-already-counts-the-right-moments" title="Link to this section">&para;</a></h2>
+<p>This is the cheapest high-value change available, because the success events are <strong>already
+tracked locally</strong>:</p>
+<ul>
+<li><code>totalCancelsAllTime</code> / <code>totalAttemptsAllTime</code> / <code>dailyStats</code> — every time a user
+  <strong>backs out of a gated app</strong>, i.e. every time the product visibly works</li>
+<li><code>consecutiveDaysBelowGoal</code> — screen-time goal streaks</li>
+<li><code>workoutHistory</code> — completed workouts</li>
+</ul>
+<p>These already feed the review prompt (<code>checkAndTriggerReview</code>). <strong>Nothing feeds an offer.</strong></p>
+<p>Replace the &ldquo;you hit a cap, pay up&rdquo; moment with &ldquo;the thing you installed this for just
+happened&rdquo; — e.g. after the 5th successful back-out: <em>&ldquo;you&rsquo;ve closed 5 apps you didn&rsquo;t mean to
+open this week.&rdquo;</em> That is the moment to make an offer, and it costs almost nothing to wire.</p>
+<hr>
+<h1 id="part-5-three-options">Part 5 — Three options<a class="headerlink" href="#part-5-three-options" title="Link to this section">&para;</a></h1>
+<p>All three assume the foundation ships first.</p>
+<h2 id="option-a-patronage-monetise-affection-not-features">Option A — Patronage. Monetise affection, not features.<a class="headerlink" href="#option-a-patronage-monetise-affection-not-features" title="Link to this section">&para;</a></h2>
+<p><strong>The bet:</strong> the only money dialed has ever taken was a tip. Lean into the one thing with
+evidence behind it.</p>
+<ul>
+<li>Remove both feature caps entirely. Everything free, forever.</li>
+<li>Replace the paywall with a prominent, well-timed <strong>&ldquo;support dialed&rdquo;</strong> with tiers
+  (~$3 / $8 / $20), surfaced at the success moments in F4.</li>
+<li>Make the privacy position the pitch: <em>&ldquo;no ads, no tracking, no subscription. if it&rsquo;s
+  earned it, buy me a coffee.&rdquo;</em></li>
+</ul>
+<p><strong>Evidence:</strong> ScreenZen runs 1M+ installs at 4.7★ on tips only, and its users volunteer
+unprompted praise <em>specifically</em> contrasting it with paid competitors:</p>
+<blockquote>
+<p>&ldquo;Unlike a certain app that shall remain nameless that wants LITERALLY A HUNDRED DOLLARS&hellip;
+this one only has an OPTIONAL tip&hellip; Which I happily contributed!&rdquo;</p>
+</blockquote>
+<p><strong>For:</strong> zero rating risk, perfectly on-brand, removes the churn-triggering caps (§2.5), and
+it is the only model dialed has <em>actual evidence</em> works for it.
+<strong>Against:</strong> hard revenue ceiling. Realistically a few hundred dollars a year at any plausible
+scale. This is a decision to treat dialed as a reputation asset, not a business.</p>
+<hr>
+<h2 id="option-b-one-lifetime-dialed-pro-repriced-with-a-trial-recommended">Option B — One lifetime &ldquo;dialed pro&rdquo;, repriced, with a trial. ⭐ recommended<a class="headerlink" href="#option-b-one-lifetime-dialed-pro-repriced-with-a-trial-recommended" title="Link to this section">&para;</a></h2>
+<p><strong>The bet:</strong> the category supports $25-43 lifetime purchases from this exact audience. dialed
+is at $8.48 across two awkward flows. Fix the packaging, the price, and the trial together.</p>
+<ol>
+<li><strong>One new SKU: <code>dialed_pro</code>, one-time, $9.99-12.99.</strong> Unlocks everything, forever.</li>
+<li><strong>Keep both existing SKUs live</strong> so nobody who already owns one loses anything, and
+   grandfather existing owners into pro. Never remove shipped functionality (§2.5).</li>
+<li><strong>Add a 7-day full trial of pro</strong>, starting after onboarding — the structural gap every
+   paying competitor fills (§1.4). Entitlement becomes
+   <code>purchased || withinTrial</code>; store <code>trialStartedAt</code> in DataStore.</li>
+<li><strong>Replace both cap-dialogs with one pro screen</strong> showing price, the three anti-claims from
+   F6, and outcome copy.</li>
+<li><strong>Optionally show pro next to the two legacy unlocks</strong> — adding a second option to a paywall
+   lifted conversion <strong>+61%</strong> in Adapty&rsquo;s benchmark, and the bundle becomes the obvious pick.</li>
+</ol>
+<p><strong>Why $9.99-12.99 and not $24.99:</strong> the category floor is ~$25, but dialed has 17 ratings and
+no displayed star score against competitors with 50K-235K reviews. Trust, not price, caps what
+it can charge <em>today</em>. $9.99-12.99 is 2.5-3x current ARPU, still the cheapest credible lifetime
+in the category, and it makes &ldquo;one-time, no subscription, ever&rdquo; a headline instead of a footnote.</p>
+<p><strong>For:</strong> matches the proven pattern of every paid competitor; kills the $8.48/two-flows problem;
+turns the anti-subscription sentiment into a weapon; trial teaches value before showing a ceiling.
+<strong>Against:</strong> most work (trial mechanic + entitlement plumbing + new screen). Repricing carries
+theoretical risk — though with zero sales at the current price, there is nothing to cannibalise.</p>
+<hr>
+<h2 id="option-c-dont-monetise-harder-yet-fix-volume-and-retention-first">Option C — Don&rsquo;t monetise harder yet. Fix volume and retention first.<a class="headerlink" href="#option-c-dont-monetise-harder-yet-fix-volume-and-retention-first" title="Link to this section">&para;</a></h2>
+<p><strong>The bet:</strong> §3&rsquo;s arithmetic is the whole story. 403 installs × any conversion rate ≈ nothing.
+Ship only the foundation, then spend everything on installs and ratings for a quarter.</p>
+<ul>
+<li>Ship the foundation (it is also the measurement instrument).</li>
+<li>Run <strong>Play Store Listing Experiments</strong> on icon + first two screenshots — free, native,
+  no SDK, documented lifts of 8-32%; Google&rsquo;s own case studies show +20-45% installs.</li>
+<li>Chase the <strong>rating display threshold</strong> — dialed shows <em>no stars at all</em> to cold traffic while
+  competitors show 4.6-4.8. That is the single worst conversion handicap it has.</li>
+<li>Revisit pricing at ~5,000 installs with real Console buyer data.</li>
+</ul>
+<p><strong>For:</strong> intellectually honest, cheapest, avoids guessing pricing with n=0.
+<strong>Against:</strong> slow. And it is not actually an alternative to B so much as a sequencing of it —
+the offer will still be a $3.99 quantity cap when the traffic arrives.</p>
+<hr>
+<h1 id="part-6-recommendation">Part 6 — Recommendation<a class="headerlink" href="#part-6-recommendation" title="Link to this section">&para;</a></h1>
+<p><strong>Foundation + Option B, then Option C&rsquo;s volume work.</strong></p>
+<p>Reasoning:</p>
+<ul>
+<li>The foundation is non-negotiable — F1 is a live policy risk and the rest is cheap.</li>
+<li>B, because the evidence for it is the strongest and most specific finding in the whole
+  research pass: this audience pays $25-43 one-time, refuses subscriptions, and every paying
+  competitor gives a trial first. dialed does the opposite of all three. B also <em>removes</em> the
+  cap pattern that §2.5 identifies as a churn trigger by replacing caps with a trial.</li>
+<li>A is tempting and on-brand, but it forecloses the option of ever being a business, and
+  the evidence says these users will pay 3x what dialed currently asks.</li>
+<li>C&rsquo;s volume work is right but is a follow-on, not a substitute. Do it once the offer is
+  worth showing.</li>
+</ul>
+<p><strong>Explicitly do not:</strong> add a subscription (§2.2 — it is the one thing this audience
+actively organises against), add analytics SDKs (§2.4 — it is a purchase condition here),
+or remove any currently-free functionality (§2.5).</p>
+<hr>
+<h1 id="part-7-measurement-without-breaking-the-privacy-position">Part 7 — Measurement, without breaking the privacy position<a class="headerlink" href="#part-7-measurement-without-breaking-the-privacy-position" title="Link to this section">&para;</a></h1>
+<p>No SDK needed for any of this.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Source</th>
+<th>What it gives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Play Console → Acquisition</strong></td>
+<td>store-listing visitors, install CTR, <strong>Buyers tab</strong> (visitors who purchased any IAP)</td>
+</tr>
+<tr>
+<td><strong>Play Console → Financial/order reports</strong></td>
+<td>every transaction: product ID, price, date, country</td>
+</tr>
+<tr>
+<td><strong>Play Store Listing Experiments</strong></td>
+<td>free native A/B on icon/screenshots with confidence intervals</td>
+</tr>
+</tbody>
+</table></div>
+<p>What Console <strong>cannot</strong> give: in-app funnel, paywall impression counts, which cap a user hit,
+time-to-paywall. So the one honest gap is that <strong>a conversion rate still has no denominator.</strong></p>
+<p>If that becomes blocking, the privacy-preserving answer is a <strong>local, on-device counter</strong>
+(paywall-shown / dismissed / purchased) that the user can see and optionally include in a
+support email — no network call, no SDK, no ID. That keeps <code>[C-004]</code> intact.</p>
+<hr>
+<h1 id="part-8-first-pass-concretely">Part 8 — First pass, concretely<a class="headerlink" href="#part-8-first-pass-concretely" title="Link to this section">&para;</a></h1>
+<ol>
+<li><strong>F1</strong> — cut the two false gym claims <em>(policy risk — do first)</em></li>
+<li><strong>F2/F3</strong> — real price on the dialog, restore purchases</li>
+<li><strong>F5/F6/F7</strong> — outcome copy, the three anti-claims, one line of social proof</li>
+<li><strong>F4</strong> — move the offer to the success moments already tracked</li>
+<li>Read Play Console Acquisition → Buyers, and Financial reports, to record a true baseline</li>
+<li>Then B: create <code>dialed_pro</code>, wire the trial, grandfather existing owners</li>
+</ol>
+<p>Steps 1-4 are shippable in one release and require no strategic commitment.
+Step 6 is the decision this document is asking for.</p>
+<hr>
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Link to this section">&para;</a></h2>
+<p>Competitive pricing verified against live Play/App Store listings. Behavioural claims from
+RevenueCat State of Subscription Apps 2025/2026, Adapty 2026, Adjust/AppTweak, and Google Play
+Console&rsquo;s own case studies. Audience quotes are verbatim from r/digitalminimalism, r/dumbphones,
+r/nosurf, r/ADHD and Play Store reviews, each with a source URL inline above.</p>
+<p>Unverified and flagged: exact Before Launcher and Unlauncher Pro prices; no developer in this
+category has publicly disclosed revenue or conversion rates (the Niagara ~$100K/month figure is a
+SensorTower third-party estimate); no methodologically sound benchmark exists for tip-jar
+conversion rates.</p>
+  </main>
+  <!--SERIESNAV--><!--/SERIESNAV-->
+  <footer class="doc-foot">
+    <span>20 September 2026</span>
+    <span><a href="../">&larr; all documents</a></span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById("theme-toggle");
+  btn.addEventListener("click", function () {
+    var cur = root.getAttribute("data-theme");
+    if (!cur) cur = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    var next = cur === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("read-theme", next); } catch (e) {}
+  });
+
+  var bar = document.getElementById("progress");
+  var topbar = document.getElementById("topbar");
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? Math.min(100, (window.scrollY / h) * 100) : 0) + "%";
+      topbar.classList.toggle("scrolled", window.scrollY > 8);
+      ticking = false;
+    });
+  }
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  document.querySelectorAll(".codehilite").forEach(function (block) {
+    var b = document.createElement("button");
+    b.className = "copy-btn"; b.type = "button"; b.textContent = "Copy";
+    b.addEventListener("click", function () {
+      var code = block.querySelector("code");
+      navigator.clipboard.writeText(code ? code.innerText : "").then(function () {
+        b.textContent = "Copied"; b.classList.add("done");
+        setTimeout(function () { b.textContent = "Copy"; b.classList.remove("done"); }, 1600);
+      });
+    });
+    block.appendChild(b);
+  });
+
+  var links = [].slice.call(document.querySelectorAll("nav.toc a"));
+  if (links.length) {
+    var map = {};
+    var targets = links.map(function (a) {
+      var el = document.getElementById(decodeURIComponent(a.hash.slice(1)));
+      if (el) map[el.id] = a;
+      return el;
+    }).filter(Boolean);
+    var seen = new Set();
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) seen.add(e.target.id); else seen.delete(e.target.id);
+      });
+      var active = targets.filter(function (t) { return seen.has(t.id); })[0];
+      if (!active) {
+        for (var i = targets.length - 1; i >= 0; i--) {
+          if (targets[i].getBoundingClientRect().top < 120) { active = targets[i]; break; }
+        }
+      }
+      links.forEach(function (a) { a.classList.remove("active"); });
+      if (active && map[active.id]) map[active.id].classList.add("active");
+    }, { rootMargin: "-80px 0px -70% 0px", threshold: 0 });
+    targets.forEach(function (t) { obs.observe(t); });
+  }
+})();
+</script>
+</body>
+</html>
